@@ -8,10 +8,12 @@ class CreateLocationsTable extends Migration
 {
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('description');
+            $table->json('images');
+            $table->integer('creator_id')->unsigned();
             $table->foreign('creator_id')->references('id')->on('users');
             $table->decimal('long', 10, 7);
             $table->decimal('lat', 10, 7);
@@ -21,6 +23,6 @@ class CreateLocationsTable extends Migration
 
     public function down()
     {
-        Schema::drop("items");
+        Schema::drop("locations");
     }
 }

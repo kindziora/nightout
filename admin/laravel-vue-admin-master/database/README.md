@@ -10,6 +10,9 @@
     * locations
         * events
             * consumer[of type user]
+        * events
+            * promotion
+                * consumer[of type user]
 
 #### in words
 
@@ -17,4 +20,10 @@
 * A user of type "consumer" can sign In to events--
 * A user of type "validator" can read the qrCode of a "consumer" and process a checkin
 * A checkin is the process of attending to an event and requesting your promotion
+* A promotion is an offer for an event, using a promotion means having benefefits
+* type of promotions are:
+    * attendee [default]
+    * price
+    * product
+    * other
 
