@@ -29,6 +29,24 @@ const state = {
       },
       component: lazyLoading('axios', true)
     },
+    {
+      name: 'About',
+      path: '/about',
+      meta: {
+        icon: 'fa-info',
+        link: 'info/index.vue'
+      },
+      component: lazyLoading('info', true)
+    },
+    {
+      name: 'locations',
+      path: '/locations',
+      meta: {
+        icon: 'fa-map',
+        link: 'locations/index.vue'
+      },
+      component: lazyLoading('locations', true)
+    },
     charts,
     uifeatures,
     components,

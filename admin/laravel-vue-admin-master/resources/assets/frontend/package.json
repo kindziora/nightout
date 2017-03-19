@@ -1,23 +1,14 @@
 {
-  "name": "vue-admin",
-  "version": "0.1.12",
-  "description": "Vue Admin Panel Framework",
+  "name": "nightout",
+  "version": "0.0.1",
+  "description": "nightout",
   "repository": "vue-bulma/vue-admin",
-  "homepage": "https://admin.vuebulma.com",
-  "license": "MIT",
+  "homepage": "https://akindziora@bitbucket.org/akindziora/nightout.git",
+  "private": true,
   "author": {
-    "name": "Fangdun Cai",
-    "email": "cfddream@gmail.com",
-    "url": "fundon.me"
+    "name": "Alexander Kindziora",
+    "email": "kindziora@live.de"
   },
-  "keywords": [
-    "admin",
-    "bulma",
-    "dashboard",
-    "data",
-    "visualization",
-    "vue"
-  ],
   "engines": {
     "node": ">=4",
     "npm": ">=3"

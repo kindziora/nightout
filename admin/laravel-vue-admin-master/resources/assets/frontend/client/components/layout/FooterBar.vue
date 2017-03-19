@@ -8,7 +8,7 @@
               <i class="fa fa-github"></i>
             </span>
           </a>
-          <a href="https://twitter.com/_fundon">
+          <a href="https://twitter.com/rnightout">
             <span class="icon">
               <i class="fa fa-twitter"></i>
             </span>
