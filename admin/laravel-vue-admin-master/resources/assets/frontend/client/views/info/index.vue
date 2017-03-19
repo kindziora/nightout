@@ -10,7 +10,7 @@
       <strong>{{ description }}</strong>,
      STarter by Alexander Kindziora
     </p> 
-    <p>Bulma rocks</p> 
+    <p>Bulma rocks</p>
   </div> 
 </template>
 
