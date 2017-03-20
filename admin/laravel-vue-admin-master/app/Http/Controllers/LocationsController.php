@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Item;
+use App\Location;
 
 
-class AdminController extends Controller
+class LocationsController extends Controller
 {
     public function index(){
         return view('index');
@@ -24,7 +24,7 @@ class AdminController extends Controller
         $items = Item::latest()->paginate(5);
         return response()->json($items);
     }
- 
+
     /**
      * Store a newly created resource in storage.
      *
