@@ -7,6 +7,12 @@
         <article class="tile is-child box">
           <p class="title">{{p.title}}</p>
           <p class="subtitle">{{p.description}}</p>
+          <div class="content">
+          
+          <img :src="p.images[1]" />
+          
+          </div>
+          
         </article>
       </div>
  </div>
@@ -134,7 +140,7 @@ export default {
       this.$http({
         url: api,
         transformResponse: [(data) => {
-          return JSON.parse(data.replace(/T00:00:00/g, ''))
+          return JSON.parse(data)
         }],
         params: {
           parameters: {
@@ -146,6 +152,10 @@ export default {
         }
       }).then((response) => {
         this.locations = response.data.data
+
+        for (var i in this.locations) {
+          this.locations[i].images = JSON.parse(this.locations[i].images)
+        }
         this.isloading = false
       }).catch((error) => {
         console.log(error)
