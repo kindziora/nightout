@@ -25,11 +25,11 @@ class Promotion extends Model
 
 
     public function codes(){
-        return $this->hasMany('App\Model\Code');
+        return $this->hasMany('App\Models\Code');
     }
 
     public function event()
     {
-        return $this->belongsTo('App\Model\Event');
+        return $this->belongsTo('App\Models\Event');
     }       
 }

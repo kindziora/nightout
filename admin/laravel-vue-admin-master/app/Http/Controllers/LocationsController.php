@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Location;
-
+use App\Models\Location;
 
 class LocationsController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('index');
     }
 
@@ -21,7 +21,8 @@ class LocationsController extends Controller
      */
     public function list(Request $request)
     {
-        $items = Item::latest()->paginate(5);
+        $items = Location::latest()->paginate(5);
+        
         return response()->json($items);
     }
 
@@ -61,5 +62,4 @@ class LocationsController extends Controller
         Item::find($id)->delete();
         return response()->json(['done']);
     }
- 
 }

@@ -1,5 +1,16 @@
 <template>
   <div>
+
+
+<div class="tile is-ancestor" v-model="this.locations">
+      <div class="tile is-parent" v-for="p in locations" :value="p">
+        <article class="tile is-child box">
+          <p class="title">{{p.title}}</p>
+          <p class="subtitle">{{p.description}}</p>
+        </article>
+      </div>
+ </div>
+    
     <div class="tile is-ancestor">
       <div class="tile is-parent is-8">
         <article class="tile is-child box">
@@ -69,13 +80,12 @@
 <script>
 import Chart from 'vue-bulma-chartjs'
 
-const api = '/MODApis/Api/v2/InteractiveChart/json'
+const api = '/locations/list'
 
 export default {
   components: {
     Chart
   },
-
   data () {
     return {
       params: {
@@ -85,7 +95,7 @@ export default {
       },
       symbols: ['AAPL', 'MSFT', 'JNJ', 'GOOG'],
       periods: ['Day', 'Week', 'Month', 'Quarter', 'Year'],
-      data: [],
+      locations: [],
       labels: [],
       isloading: false,
       options: {
@@ -118,12 +128,9 @@ export default {
       }
     }
   },
-
   methods: {
     loadData () {
       this.isloading = true
-      this.labels.length = 0
-      this.data.length = 0
       this.$http({
         url: api,
         transformResponse: [(data) => {
@@ -138,15 +145,15 @@ export default {
           }
         }
       }).then((response) => {
-        let dates = response.data.Dates
-        let price = response.data.Elements[0].DataSeries.close.values
-        this.data.push(...price)
-        this.labels.push(...dates)
+        this.locations = response.data.data
         this.isloading = false
       }).catch((error) => {
         console.log(error)
       })
     }
+  },
+  mounted () {
+    this.loadData()
   }
 }
 </script>

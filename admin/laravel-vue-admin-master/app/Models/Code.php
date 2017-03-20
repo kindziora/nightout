@@ -23,7 +23,7 @@ class Code extends Model
 
     public function promotion()
     {
-        return $this->hasOne('App\Model\Promotion');
+        return $this->hasOne('App\Models\Promotion');
     }
  
 }

@@ -24,21 +24,21 @@ class Signin extends Model
     protected $guarded = [];
 
     public function code(){
-        return $this->hasOne('App\Model\Code', 'id', 'promotion_code_id');
+        return $this->hasOne('App\Models\Code', 'id', 'promotion_code_id');
     }
 
     public function validator()
     {
-        return $this->hasOne('App\Model\User', 'id', 'validated_by_user_id');
+        return $this->hasOne('App\Models\User', 'id', 'validated_by_user_id');
     }    
 
     public function consumer()
     {
-        return $this->hasOne('App\Model\User', 'id', 'user_id');
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     } 
 
     public function event()
     {
-        return $this->hasOne('App\Model\Event');
+        return $this->hasOne('App\Models\Event');
     } 
 }

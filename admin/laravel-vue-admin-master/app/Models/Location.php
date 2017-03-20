@@ -27,10 +27,10 @@ class Location extends Model
 
     public function creator()
     {
-        return $this->belongsTo('App\Model\User', 'id', 'creator_id');
+        return $this->belongsTo('App\Models\User', 'id', 'creator_id');
     }
 
     public function events(){
-        return $this->hasMany('App\Model\Event', 'location_id', 'id');
+        return $this->hasMany('App\Models\Event', 'location_id', 'id');
     }
 }

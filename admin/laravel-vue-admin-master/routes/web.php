@@ -14,10 +14,12 @@
 Route::group(['middleware' => ['web']], function(){
     Route::get('/', 'AdminController@index')->name('root');
 
-Route::get('/test', function(){
- var_dump("debug_print_backtrace()");
+    Route::get('/test', function(){
+    var_dump("debug_print_backtrace()");
 
-});
- 
+    });
+    
+    Route::get('locations/list', 'LocationsController@list');
+
 
 });

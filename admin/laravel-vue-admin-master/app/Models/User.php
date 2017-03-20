@@ -34,7 +34,7 @@ class User extends Authenticatable
     protected $guarded = [];
     
     public function locations(){
-        return $this->hasMany('App\Model\Locations', 'creator_id', 'id');
+        return $this->hasMany('App\Models\Locations', 'creator_id', 'id');
     }
   
 }

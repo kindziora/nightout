@@ -26,7 +26,7 @@ class Event extends Model
 
     public function location()
     {
-        return $this->belongsTo('App\Model\Location');
+        return $this->belongsTo('App\Models\Location');
     }
 
 }
