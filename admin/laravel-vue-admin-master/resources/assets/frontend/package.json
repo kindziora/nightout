@@ -5,6 +5,7 @@
   "repository": "vue-bulma/vue-admin",
   "homepage": "https://akindziora@bitbucket.org/akindziora/nightout.git",
   "private": true,
+  "license": "private",
   "author": {
     "name": "Alexander Kindziora",
     "email": "kindziora@live.de"

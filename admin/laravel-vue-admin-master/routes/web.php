@@ -11,13 +11,12 @@
 |
 */
    
-Route::group(['middleware' => ['web']], function(){
+Route::group(['middleware' => ['web']], function () {
     
     Route::get('/', 'AdminController@index')->name('root');
 
-    Route::get('/test', function(){
-    var_dump("debug_print_backtrace()");
-
+    Route::get('/test', function () {
+        var_dump("debug_print_backtrace()");
     });
     
     //locations
@@ -28,7 +27,10 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('locations/store', 'LocationsController@store');
     Route::get('locations/update/{id}', 'LocationsController@update');
     Route::get('locations/remove/{id}', 'LocationsController@destroy');
-    
+
+    // image uploads
+    Route::get('resizeImage', 'ImageController@resizeImage');
+    Route::post('resizeImagePost', ['as'=>'resizeImagePost','uses'=>'ImageController@resizeImagePost']);
     
 
 
