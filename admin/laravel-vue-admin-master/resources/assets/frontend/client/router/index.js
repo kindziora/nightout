@@ -13,6 +13,11 @@ export default new Router({
       path: '/',
       component: require('../views/Home')
     },
+    {
+      name: 'login',
+      path: '/login',
+      component: require('../views/user/login')
+    },
     ...generateRoutesFromMenu(menuModule.state.items),
     {
       path: '*',
@@ -20,7 +25,7 @@ export default new Router({
     }
   ]
 })
-
+console.log(generateRoutesFromMenu(menuModule.state.items))
 // Menu should have 2 levels.
 function generateRoutesFromMenu (menu = [], routes = []) {
   for (let i = 0, l = menu.length; i < l; i++) {

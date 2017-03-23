@@ -14,6 +14,9 @@
 Route::group(['middleware' => ['web']], function () {
     
     Route::get('/', 'AdminController@index')->name('root');
+    Route::get('/login', 'Auth\LoginController@login')->name('login');
+
+
 
     Route::get('/test', function () {
         var_dump("debug_print_backtrace()");
