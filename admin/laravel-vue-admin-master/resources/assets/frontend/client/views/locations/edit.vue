@@ -1,5 +1,5 @@
 <template>
-  <form action="/location/create" method="POST">
+  <form action="/location/edit" method="POST">
     <div class="tile is-parent">
       <article class="tile is-child box">
         <h1 class="title">Location anlegen</h1>

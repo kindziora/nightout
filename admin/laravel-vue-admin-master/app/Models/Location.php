@@ -19,7 +19,8 @@ class Location extends Model
         'images',
         'creator_id',
         'long',
-        'lat'
+        'lat',
+        'address'
     ];
 
     protected $guarded = [];

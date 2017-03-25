@@ -19,7 +19,13 @@ export default new Router({
       component: require('../views/user/login')
     },
     {
-      name: 'locationCreate',
+      name: 'Lokations',
+      path: '/locations/user/:name',
+      component: require('../views/locations/index'),
+      props: true 
+    },
+    {
+      name: 'Location anlegen',
       path: '/location/create',
       component: require('../views/locations/create')
     },

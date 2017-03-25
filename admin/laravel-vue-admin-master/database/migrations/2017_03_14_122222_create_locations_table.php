@@ -20,6 +20,7 @@ class CreateLocationsTable extends Migration
             $table->foreign('creator_id')->references('id')->on('users');
             $table->decimal('long', 10, 7);
             $table->decimal('lat', 10, 7);
+            $table->string('address');
             $table->timestamps();
         });
     }
