@@ -29,9 +29,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('locations/list/{country?}/{city?}/{user?}', 'LocationsController@list');
     
-    Route::get('locations/store', 'LocationsController@store');
-    Route::get('locations/update/{id}', 'LocationsController@update');
-    Route::get('locations/remove/{id}', 'LocationsController@destroy');
+    Route::post('location/create', 'LocationsController@store');
+    Route::post('location/update/{id}', 'LocationsController@update');
+    Route::post('location/remove/{id}', 'LocationsController@destroy');
 
     // image uploads
     Route::get('resizeImage', 'ImageController@resizeImage');

@@ -49,6 +49,9 @@
       },
       successCallBack: function (response) {
         console.log('AjaxForm submission: SUCCESS')
+
+        localStorage.setItem("me", JSON.stringify(response.data))
+
         router.push({ path: 'Home' })
       },
       errorCallBack: function (response) {

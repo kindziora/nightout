@@ -34,7 +34,7 @@ class LocationsController extends Controller
      */
     public function store(Request $request)
     {
-        $create = Item::create($request->all());
+        $create = Location::create($request->all());
         return response()->json($create);
     }
 
