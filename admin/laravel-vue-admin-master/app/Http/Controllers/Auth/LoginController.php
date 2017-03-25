@@ -48,13 +48,11 @@ class LoginController extends Controller
      */
     public function sendLoginResponse($request)
     {
-
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);
 
-        return response()->json(["result" => $this->authenticated($request, $this->guard()->user())], 200);
- 
+        return response()->json($this->authenticated($request, $this->guard()->user()), 200);
     }
 
     /**
@@ -68,5 +66,18 @@ class LoginController extends Controller
         $errors = [$this->username() => trans('auth.failed')];
         return response()->json($errors, 422);
     }
+
+     /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated($request, $user)
+    {
+        return $user;
+    }
+
 
 }

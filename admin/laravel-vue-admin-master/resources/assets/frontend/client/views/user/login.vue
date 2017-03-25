@@ -30,6 +30,8 @@
 
 <script>
   import FormData from 'form-data'
+  import router from '../../router'
+
   export default {
     computed: {
       form_method: function () {
@@ -47,9 +49,10 @@
       },
       successCallBack: function (response) {
         console.log('AjaxForm submission: SUCCESS')
+        router.push({ path: 'Home' })
       },
       errorCallBack: function (response) {
-        console.log('AjaxForm submission: ERROR')
+        console.log('AjaxForm submission: ERROR', response)
       }
     }
   }
