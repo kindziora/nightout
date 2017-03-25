@@ -49,3 +49,4 @@ export default {
   }
 }
 </style>
+<style src="../../assets/css/bulmaswatch.min.css"></style>

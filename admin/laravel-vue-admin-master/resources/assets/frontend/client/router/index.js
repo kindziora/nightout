@@ -19,7 +19,7 @@ export default new Router({
       component: require('../views/user/login')
     },
     {
-      name: 'Lokations',
+      name: 'Locations',
       path: '/locations/user/:name',
       component: require('../views/locations/index'),
       props: true 
@@ -28,6 +28,16 @@ export default new Router({
       name: 'Location anlegen',
       path: '/location/create',
       component: require('../views/locations/create')
+    },
+    {
+      name: 'Location ansehen',
+      path: '/location/:name',
+      component: require('../views/locations/view')
+    },
+    {
+      name: 'Veranstalter ansehen',
+      path: '/organizer/:name',
+      component: require('../views/user/organizer/view')
     },
     ...generateRoutesFromMenu(menuModule.state.items),
     {

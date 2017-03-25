@@ -6,16 +6,21 @@
           <a class="nav-item is-hidden-tablet" @click="toggleSidebar(!sidebar.opened)">
             <i class="fa fa-bars" aria-hidden="true"></i>
           </a>
-        </div>
-        <div class="nav-center">
-          <a class="nav-item hero-brand" href="/">
-            <img src="~assets/logo.png" :alt="pkginfo.description">
-              <div class="is-hidden-mobile">
-                <span class="vue">rNight</span> <strong class="admin">Admin </strong>
-              </div>
+           <a class="nav-item is-tab" href="/user/news">
+            <i class="fa fa-bell-o"></i>
           </a>
         </div>
-        <div class="nav-right is-flex"></div>
+        <div class="nav-center">
+     
+        </div>
+        <div class="nav-right is-flex">
+          <a class="nav-item is-tab" href="/user/news">
+            <i class="fa fa-bell-o"></i>
+          </a>
+          <a class="nav-item is-tab" href="/user/me">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </a>
+        </div>
       </nav>
     </div>
   </section>
@@ -48,6 +53,7 @@
     ])
   }
 </script>
+
 
 <style lang="scss">
   @import '~bulma/sass/utilities/variables';
