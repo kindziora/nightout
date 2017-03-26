@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Item;
+use App\Models\Event;
 
 
 class EventsController extends Controller
@@ -21,7 +21,7 @@ class EventsController extends Controller
      */
     public function list(Request $request)
     {
-        $items = Item::latest()->paginate(5);
+        $items = Event::latest()->paginate(5);
         return response()->json($items);
     }
 
@@ -33,7 +33,7 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        $create = Item::create($request->all());
+        $create = Event::create($request->all());
         return response()->json($create);
     }
 
@@ -46,7 +46,7 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $edit = Item::find($id)->update($request->all());
+        $edit = Event::find($id)->update($request->all());
         return response()->json($edit);
     }
 
@@ -58,7 +58,7 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        Item::find($id)->delete();
+        Event::find($id)->delete();
         return response()->json(['done']);
     }
  

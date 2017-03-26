@@ -30,10 +30,10 @@
             </div>
             <div class="control is-grouped">
               <p class="control is-expanded">
-                <datepicker placeholder="von" :config="{ enableTime: true, time_24hr: true, dateFormat: 'Y-m-d H:i' }" name="von"></datepicker>
+                <datepicker placeholder="von" :config="{ enableTime: true, time_24hr: true, dateFormat: 'Y-m-d H:i' }" name="from"></datepicker>
               </p>
               <p class="control is-expanded">
-                <datepicker placeholder="bis" :config="{ enableTime: true, time_24hr: true, dateFormat: 'Y-m-d H:i' }" name="bis"></datepicker>
+                <datepicker placeholder="bis" :config="{ enableTime: true, time_24hr: true, dateFormat: 'Y-m-d H:i' }" name="to"></datepicker>
               </p>
             </div>
           </div>
@@ -57,11 +57,14 @@
             <div class="select is-fullwidth">
               <p class="control is-expanded">
                 <v-select :debounce="250" 
+                v-model="location_id"
                 :on-search="getOptions" 
                 :options="options"
-                 placeholder="Location finden..." label="title" name="location_id">
+                placeholder="Location finden..."
+                label="title" >
                 </v-select>
               </p>
+              <input class="input hidden" type="text" name="location_id" v-model="location_id" />
             </div>
           </div>
         </div>
@@ -127,6 +130,7 @@
     },
     data() {
       return {
+        location_id : null,
         selected: null,
         options: [],
         zoom: 8,
@@ -167,7 +171,9 @@
   
         formData.append('images', JSON.stringify(["bild1"]))
         formData.append('creator_id', JSON.parse(localStorage.getItem("me")).id)
-  
+       // formData.set('location_id', JSON.parse(formData.get('location_id')).id)
+
+
         this.$http[this.form_method](this.form_action, formData)
           .then(this.successCallBack, this.errorCallBack)
       },

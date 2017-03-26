@@ -33,6 +33,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('location/update/{id}', 'LocationsController@update');
     Route::post('location/remove/{id}', 'LocationsController@destroy');
 
+    //events
+    Route::post('event/create', 'EventsController@store');
     // image uploads
     Route::get('resizeImage', 'ImageController@resizeImage');
     Route::post('resizeImagePost', ['as'=>'resizeImagePost','uses'=>'ImageController@resizeImagePost']);
