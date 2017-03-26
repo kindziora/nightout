@@ -34,6 +34,11 @@ export default new Router({
       path: '/location/:name',
       component: require('../views/locations/view')
     },
+     {
+      name: 'Event anlegen',
+      path: '/event/create',
+      component: require('../views/events/create')
+    },
     {
       name: 'Veranstalter ansehen',
       path: '/organizer/:name',

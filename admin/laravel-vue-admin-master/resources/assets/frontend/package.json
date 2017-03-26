@@ -65,6 +65,7 @@
     "vue-nprogress": "0.1.5",
     "vue-peity": "0.5.0",
     "vue-router": "^2.3.0",
+    "vue-select": "github:sagalbot/vue-select",
     "vue-style-loader": "latest",
     "vue2-google-maps": "^0.7.1",
     "vuex": "^2.2.1",

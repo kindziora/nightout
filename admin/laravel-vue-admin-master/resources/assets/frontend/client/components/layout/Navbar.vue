@@ -7,7 +7,7 @@
             <i class="fa fa-bars" aria-hidden="true"></i>
           </a>
            <a class="nav-item is-tab" href="/user/news">
-            <i class="fa fa-bell-o"></i>
+            <i class="fa fa-bug"></i>
           </a>
         </div>
         <div class="nav-center">
