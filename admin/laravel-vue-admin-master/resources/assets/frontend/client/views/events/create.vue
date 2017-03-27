@@ -26,6 +26,28 @@
   
           <div class="control is-horizontal">
             <div class="control-label">
+              <label class="label">Location</label>
+            </div>
+            <div class="control is-grouped">
+              <div class="select is-fullwidth">
+                <p class="control is-expanded">
+                  <v-select 
+                  :debounce="250" 
+                  v-model="location"
+                   :on-search="getOptions"
+                    :options="options" 
+                    placeholder="Location finden..."
+                     label="title">
+                  </v-select>
+                </p>
+                <input class="input hidden" type="text" name="location"
+                 v-model="location" />
+              </div>
+            </div>
+          </div>
+  
+          <div class="control is-horizontal">
+            <div class="control-label">
               <label class="label">Datum</label>
             </div>
             <div class="control is-grouped">
@@ -51,26 +73,6 @@
   
         <div class="control is-horizontal">
           <div class="control-label">
-            <label class="label">Location</label>
-          </div>
-          <div class="control is-grouped">
-            <div class="select is-fullwidth">
-              <p class="control is-expanded">
-                <v-select :debounce="250" 
-                v-model="location_id"
-                :on-search="getOptions" 
-                :options="options"
-                placeholder="Location finden..."
-                label="title" >
-                </v-select>
-              </p>
-              <input class="input hidden" type="text" name="location_id" v-model="location_id" />
-            </div>
-          </div>
-        </div>
-  
-        <div class="control is-horizontal">
-          <div class="control-label">
             <label class="label">&nbsp;</label>
           </div>
           <div class="control">
@@ -91,7 +93,7 @@
   import Vue from 'vue';
   import Notification from 'vue-bulma-notification'
   import Datepicker from 'vue-bulma-datepicker'
-
+  
   const NotificationComponent = Vue.extend(Notification)
   
   const openNotification = (propsData = {
@@ -130,7 +132,7 @@
     },
     data() {
       return {
-        location_id : null,
+        location: null,
         selected: null,
         options: [],
         zoom: 8,
@@ -153,7 +155,11 @@
         return this.$el.method.toLowerCase()
       },
       form_action: function() {
+         console.log(this);
         return this.$el.action.toLowerCase()
+      },
+      location_id: function() { 
+        return parseInt(this.location.id);
       }
     },
     methods: {
@@ -162,7 +168,7 @@
         this.$http.get('https://lo.cal/locations/list', {
           name: search
         }).then(resp => {
-          this.options = resp.data.data 
+          this.options = resp.data.data
           loading(false)
         })
       },
@@ -171,15 +177,14 @@
   
         formData.append('images', JSON.stringify(["bild1"]))
         formData.append('creator_id', JSON.parse(localStorage.getItem("me")).id)
-       // formData.set('location_id', JSON.parse(formData.get('location_id')).id)
-
-
+        formData.set('location_id', this.location_id)
+  
         this.$http[this.form_method](this.form_action, formData)
           .then(this.successCallBack, this.errorCallBack)
       },
       successCallBack: function(response) {
         openNotification({
-          title: 'Location ' + response.data.title,
+          title: 'Event ' + response.data.title,
           message: 'Wurde erfolgreich angelegt.',
           type: "success"
         })

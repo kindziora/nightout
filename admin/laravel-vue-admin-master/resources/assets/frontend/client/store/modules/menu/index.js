@@ -47,6 +47,15 @@ const state = {
       },
       component: lazyLoading('locations', true)
     },
+    {
+      name: 'events',
+      path: '/events',
+      meta: {
+        icon: 'fa-events',
+        link: 'events/index.vue'
+      },
+      component: lazyLoading('events', true)
+    },
     charts,
     uifeatures,
     components,

@@ -21,9 +21,9 @@
 
 <script>
   import Chart from 'vue-bulma-chartjs'
-  import router from '../../router'
+  import router from 'vue-router'
   
-  const api = '/locations/list'
+  const api = '/events/list'
   
   export default {
     components: {
