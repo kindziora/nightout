@@ -30,7 +30,7 @@
 
 <script>
   import FormData from 'form-data'
-  import router from '../../router'
+  import router from 'vue-router'
 
   export default {
     computed: {

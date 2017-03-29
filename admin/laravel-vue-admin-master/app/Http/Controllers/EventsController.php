@@ -22,7 +22,7 @@ class EventsController extends Controller
     public function list(Request $request)
     {
         $items = Event::latest()->paginate(5);
-        return response()->json($items);
+        return response()->json($items, 200,['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
     /**

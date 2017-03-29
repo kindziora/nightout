@@ -14,7 +14,7 @@
             </span>
           </a>
         </p>
-        <p>Code licensed under <a :href="'https://github.com/' + repository + '/blob/master/LICENSE'">{{ license }}</a>.</p>
+        <p>by Alexander Kindziora<a :href="'https://github.com/' + repository + '/blob/master/LICENSE'">{{ license }}</a>.</p>
       </div>
     </div>
   </footer>

@@ -1,18 +1,19 @@
 <template>
   <div>
-    <h2 class="tile">von {{this.$route.params.name}}</h2>
-  
     <div class="tile is-ancestor" v-model="this.locations">
       <div class="tile is-parent" v-for="p in locations" :value="p">
         <article class="tile is-child box">
-          <p class="title">{{p.title}}</p>
+
+          <p class="title">{{p.title}}
+          <span class="tag smallinfo">
+                   in 100m
+          </span></p>   
+          
           <p class="subtitle">{{p.description}}</p>
           <div class="content">
-  
-            <img :src="p.images[1]" />
-  
+            <img :src="p.images[0]" />
           </div>
-  
+
         </article>
       </div>
     </div>
@@ -47,7 +48,7 @@
         
         if(name === "me") {
            name = JSON.parse(localStorage.getItem('me')).name
-           router.push({ path: '/locations/user/' + name})
+           router.push({ path: '/events/user/' + name})
         }
         
         this.$http({
@@ -79,5 +80,9 @@
 </script>
 
 <style scoped>
-  
+  .smallinfo{
+    font-size:12px;
+    
+    float: right;
+  }
 </style>

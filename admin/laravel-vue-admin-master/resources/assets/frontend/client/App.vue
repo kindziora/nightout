@@ -69,6 +69,11 @@ html {
   background-color: whitesmoke;
 }
 
+@media screen and (max-width: 768px){
+  .app-content {
+      padding: 0!important;
+  }
+}
 .nprogress-container {
   position: fixed !important;
   width: 100%;

@@ -57,7 +57,6 @@
               <gmap-map :center="{lat:latLng.lat , lng:latLng.lng}" :zoom="zoom" style="width: 100%; height: 300px">
                 <gmap-marker v-for="m in markers" :key="m.position" :position="{lat:latLng.lat , lng:latLng.lng}" :clickable="true" :draggable="true" @click="center=m.position"></gmap-marker>
               </gmap-map>
-  
             </div>
           </div>
   
@@ -139,7 +138,7 @@
     data() {
       return {
         selected: null,
-        options: ['bar', 'club', 'cafe', 'restaurant', 'kino', 'sonstiges'],
+
         zoom: 8,
         latLng: {
           lat: 10,
