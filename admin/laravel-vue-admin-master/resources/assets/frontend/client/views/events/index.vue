@@ -2,7 +2,7 @@
   <div>
     <div class="tile is-ancestor" v-model="this.locations">
       <div class="tile is-parent" v-for="p in locations" :value="p">
-        <article class="tile is-child box">
+        <article class="tile is-child box"  v-link='{name: "Event ansehen"}' >
 
           <p class="title">{{p.title}}
           <span class="tag smallinfo">
