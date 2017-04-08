@@ -45,6 +45,11 @@ export default new Router({
       component: require('../views/events/view')
     },
     {
+      name: 'Promotion ansehen',
+      path: '/promotion/:name',
+      component: require('../views/promotions/view')
+    },
+    {
       name: 'Veranstalter ansehen',
       path: '/organizer/:name',
       component: require('../views/user/organizer/view')

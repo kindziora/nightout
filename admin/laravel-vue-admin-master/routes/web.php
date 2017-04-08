@@ -36,6 +36,12 @@ Route::group(['middleware' => ['web']], function () {
     //events
     Route::post('event/create', 'EventsController@store');
     Route::get('events/list', 'EventsController@list');
+    Route::get('event/{id}', 'EventsController@view');
+
+     //promotions
+    Route::post('promotion/create', 'PromotionsController@store');
+    Route::get('promotions/list', 'PromotionsController@list');
+    Route::get('promotion/{id}', 'PromotionsController@view');
     
     // image uploads
     Route::get('resizeImage', 'ImageController@resizeImage');

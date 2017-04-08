@@ -4,7 +4,7 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-          <span class="title is-3">Product Name</span>
+          <span class="title is-3">{{this.event.title}}</span>
           <span class="title is-3 has-text-muted">&nbsp;|&nbsp;</span>
           <span class="title is-4 has-text-muted">Category</span>
         </div>
@@ -36,8 +36,7 @@
             <a href="#">show all</a>
           </p>
           <br>
-          <p>Suspendisse sodales metus justo, ullamcorper iaculis purus interdum in. Sed ultricies enim felis, in interdum urna malesuada a. Morbi id ligula vel leo elementum dignissim quis vel purus. Donec iaculis, est ac maximus vestibulum, sapien mi lacinia urna, at laoreet felis lectus nec urna. Fusce egestas, neque vitae blandit scelerisque, leo arcu pellentesque risus, et volutpat neque nunc id massa. Aenean dapibus leo vel purus malesuada, eu ultrices nulla consequat. Duis erat orci, lobortis sed dictum id, pretium a nibh. Mauris pharetra ligula consequat gravida ornare.
-          </p>
+          <p>{{this.event.description}}</p>
           <br>
           <br>
           <p class="">
@@ -139,7 +138,7 @@
   import Chart from 'vue-bulma-chartjs'
   import router from '../../router'
   
-  const api = '/locations/list'
+  const api = '/event/'
   
   export default {
     components: {
@@ -149,6 +148,7 @@
     data() {
       return {
         params: {},
+        event: {title:"tz"},
         locations: [],
         labels: [],
         isloading: false,
@@ -161,33 +161,21 @@
         this.isloading = true
         let name = this.$route.params.name;
         
-        if(name === "me") {
-           name = JSON.parse(localStorage.getItem('me')).name
-           router.push({ path: '/locations/user/' + name})
-        }
-        
         this.$http({
-          url: api,
+          url: api + name,
           transformResponse: [(data) => {
             return JSON.parse(data)
           }],
-          params: {
-            user: name,
-            latlng : {}
-          }
+          params: { }
         }).then((response) => {
-          this.locations = response.data.data
-  
-          for (var i in this.locations) {
-            this.locations[i].images = JSON.parse(this.locations[i].images)
-          }
+          this.event = response.data
           this.isloading = false
-  
         }).catch((error) => {
           console.log(error)
         })
       }
     },
+
     mounted() {
       this.loadData()
     }

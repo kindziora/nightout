@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Event;
+use App\Models\Promotion;
 
 
-class EventsController extends Controller
+class PromotionsController extends Controller
 {
     public function index(){
         return view('index');
@@ -21,7 +21,8 @@ class EventsController extends Controller
      */
     public function view($id)
     {
-        $items = Event::find((integer)$id);
+        $items = Promotion::find((integer)$id);
+        $items->event = $items->event;
         return response()->json($items, 200,['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
@@ -32,7 +33,7 @@ class EventsController extends Controller
      */
     public function list(Request $request)
     {
-        $items = Event::latest()->paginate(5);
+        $items = Promotion::latest()->paginate(5);
         return response()->json($items, 200,['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
@@ -44,7 +45,7 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        $create = Event::create($request->all());
+        $create = Promotion::create($request->all());
         return response()->json($create);
     }
 
@@ -57,7 +58,7 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $edit = Event::find($id)->update($request->all());
+        $edit = Promotion::find($id)->update($request->all());
         return response()->json($edit);
     }
 
@@ -69,7 +70,7 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        Event::find($id)->delete();
+        Promotion::find($id)->delete();
         return response()->json(['done']);
     }
  
