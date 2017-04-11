@@ -2,7 +2,7 @@
   <div>
     <div class="tile is-ancestor" v-model="this.locations">
       <div class="tile is-parent" v-for="p in locations" :value="p">
-        <router-link :to="{ path: 'event/' + p.id }">
+        <router-link :to="{ path: 'promotion/' + p.id }">
           <article class="tile is-child box">
 
             <p class="title">{{p.title}}
@@ -26,7 +26,7 @@
   import Chart from 'vue-bulma-chartjs'
   import router from 'vue-router'
   
-  const api = '/events/list'
+  const api = '/promotions/list'
   
   export default {
     components: {

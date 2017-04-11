@@ -49,6 +49,16 @@ export default new Router({
       path: '/promotion/:name',
       component: require('../views/promotions/view')
     },
+     {
+      name: 'Promotion anlegen',
+      path: '/promotion/create',
+      component: require('../views/promotions/create')
+    },
+    {
+      name: 'Promotions ansehen',
+      path: '/promotions',
+      component: require('../views/promotions/index')
+    },
     {
       name: 'Veranstalter ansehen',
       path: '/organizer/:name',
