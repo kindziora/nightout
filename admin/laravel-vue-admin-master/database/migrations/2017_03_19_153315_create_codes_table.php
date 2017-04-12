@@ -15,6 +15,7 @@ class CreateCodesTable extends Migration
             $table->increments('id');
             $table->string('value');
             $table->boolean('used')->default(0);
+            $table->boolean('valid')->default(1);
             $table->integer('promotion_id')->unsigned();
             $table->foreign('promotion_id')->references('id')->on('promotions');
             $table->timestamps();

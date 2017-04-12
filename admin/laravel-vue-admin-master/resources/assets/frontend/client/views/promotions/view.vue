@@ -135,7 +135,6 @@
 </template>
 
 <script>
-  import Chart from 'vue-bulma-chartjs'
   import router from '../../router'
   import Rating from 'vue-bulma-rating'
   
@@ -143,7 +142,6 @@
   
   export default {
     components: {
-      Chart,
       router,
       Rating
     },

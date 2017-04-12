@@ -22,6 +22,8 @@ class LocationsController extends Controller
     public function list(Request $request)
     {
         $items = Location::latest()->paginate(5);
+        // query builder to load locations by filter
+        
         
         return response()->json($items);
     }
@@ -34,7 +36,7 @@ class LocationsController extends Controller
      */
     public function store(Request $request)
     {
-        $create = Location::create($request->all());
+        $create = Item::create($request->all());
         return response()->json($create);
     }
 

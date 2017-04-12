@@ -2,7 +2,7 @@
   <form action="/event/create" method="POST">
     <div class="tile is-parent">
       <article class="tile is-child box">
-        <h1 class="title">Ereignis anlegen</h1>
+        <h1 class="title">Gutschein anlegen</h1>
         <div class="block">
   
           <div class="control is-horizontal">
@@ -11,44 +11,75 @@
             </div>
             <div class="control is-grouped">
               <p class="control is-expanded">
-                <input class="input" type="text" name="title" placeholder="Wie heißt das Event...">
+                <input class="input" type="text" name="title" placeholder="Wie heißt die Aktion...">
               </p>
             </div>
           </div>
+          
           <div class="control is-horizontal">
             <div class="control-label">
               <label class="label">Beschreibung</label>
             </div>
             <div class="control">
-              <textarea class="textarea" name="description" placeholder="Beschreibe das Event..."></textarea>
+              <textarea class="textarea" name="description" placeholder="Beschreibe die Aktion..."></textarea>
             </div>
           </div>
   
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">Location</label>
-            </div>
-            <div class="control is-grouped">
-              <div class="select is-fullwidth">
-                <p class="control is-expanded">
-                  <v-select 
-                  :debounce="250" 
-                  v-model="location"
-                   :on-search="getOptions"
-                    :options="options" 
-                    placeholder="Location finden..."
-                     label="title">
-                  </v-select>
-                </p>
-                <input class="input hidden" type="text" name="location"
-                 v-model="location" />
+          <article class="tile is-child box">
+              <h1 class="title">Die Promotion verbinden</h1>
+              <div class="block">
+        
+                <div class="control is-horizontal">
+                  <div class="control-label">
+                    <label class="label">zu Event</label>
+                  </div>
+                  <div class="control is-grouped">
+                    <div class="select is-fullwidth">
+                      <p class="control is-expanded">
+                        <v-select 
+                        :debounce="250" 
+                        v-model="event"
+                         :on-search="getOptions"
+                          :options="options" 
+                          placeholder="Event finden..."
+                           label="title">
+                        </v-select>
+                      </p>
+                      <input class="input hidden" type="text" name="event"
+                       v-model="event" />
+                    </div>
+                  </div>
+                </div>
+        
+                <div class="control is-horizontal">
+                  <div class="control-label">
+                    <label class="label">zu Location</label>
+                  </div>
+                  <div class="control is-grouped">
+                    <div class="select is-fullwidth">
+                      <p class="control is-expanded">
+                        <v-select 
+                        :debounce="250" 
+                        v-model="location"
+                         :on-search="getOptions"
+                          :options="options" 
+                          placeholder="Location finden..."
+                           label="title">
+                        </v-select>
+                      </p>
+                      <input class="input hidden" type="text" name="location"
+                       v-model="location" />
+                    </div>
+                  </div>
+                </div>
+                
               </div>
-            </div>
-          </div>
-  
+          </article>   
+               
+               
           <div class="control is-horizontal">
             <div class="control-label">
-              <label class="label">Datum</label>
+              <label class="label">Zeitliche Begrenzung</label>
             </div>
             <div class="control is-grouped">
               <p class="control is-expanded">
@@ -57,6 +88,15 @@
               <p class="control is-expanded">
                 <datepicker placeholder="bis" :config="{ enableTime: true, time_24hr: true, dateFormat: 'Y-m-d H:i' }" name="to"></datepicker>
               </p>
+            </div>
+          </div>
+          
+          <div class="control is-horizontal">
+            <div class="control-label">
+              <label class="label">Anzahl der Gutscheine Begrenzen</label>
+            </div>
+            <div class="control">
+              <input id="limit" name="limit" type="number" placeholder="1 oder 100000" pattern="[0-9]" />
             </div>
           </div>
   
@@ -80,6 +120,7 @@
             <button class="button is-link">Cancel</button>
           </div>
         </div>
+        
       </article>
     </div>
   </form>
@@ -89,7 +130,6 @@
   import FormData from 'form-data'
   import router from 'vue-router'
   import vSelect from "vue-select"
-  import * as VueGoogleMaps from 'vue2-google-maps';
   import Vue from 'vue';
   import Notification from 'vue-bulma-notification'
   import Datepicker from 'vue-bulma-datepicker'
@@ -109,13 +149,6 @@
       propsData
     })
   }
-  
-  Vue.use(VueGoogleMaps, {
-    load: {
-      libraries: 'places',
-      key: 'AIzaSyAS_w6mO7-_me_4L8kY3ikJF261ftyzacU'
-    }
-  });
   
   export default {
     beforeMount() {
@@ -178,13 +211,14 @@
         formData.append('images', JSON.stringify(["bild1"]))
         formData.append('creator_id', JSON.parse(localStorage.getItem("me")).id)
         formData.set('location_id', this.location_id)
+        formData.set('event_id', this.event_id)
   
         this.$http[this.form_method](this.form_action, formData)
           .then(this.successCallBack, this.errorCallBack)
       },
       successCallBack: function(response) {
         openNotification({
-          title: 'Event ' + response.data.title,
+          title: 'Promotion ' + response.data.title,
           message: 'Wurde erfolgreich angelegt.',
           type: "success"
         })
@@ -194,16 +228,7 @@
       },
       setDescription(description) {
         this.description = description;
-      },
-      updateChild(e) {
-        this.latLng = {
-          lat: e.geometry.location.lat(),
-          lng: e.geometry.location.lng(),
-        };
-  
-  
       }
-  
     }
   }
 </script>

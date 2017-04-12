@@ -17,8 +17,12 @@ class CreatePromotionsTable extends Migration
             $table->text('description');
             $table->enum('type', ['attendee', 'price', 'product', 'other'])->default('attendee');
             $table->json('images');
+            $table->integer('limit')->unsigned();
             $table->integer('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events');
+            $table->integer('location_id')->unsigned()->nullable();
+            $table->foreign('location_id')->references('id')->on('locations');
+            
             $table->timestamps();
         });
     }
