@@ -18,7 +18,8 @@ class Promotion extends Model
         'description',
         'type',
         'images',
-        'event_id'
+        'event_id',
+        'location_id'
     ];
 
     protected $guarded = [];

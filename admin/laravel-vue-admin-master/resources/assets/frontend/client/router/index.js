@@ -19,6 +19,11 @@ export default new Router({
       component: require('../views/user/login')
     },
     {
+      name: 'register',
+      path: '/register',
+      component: require('../views/user/register')
+    },
+    {
       name: 'Locations',
       path: '/locations/user/:name',
       component: require('../views/locations/index'),
@@ -45,17 +50,17 @@ export default new Router({
       component: require('../views/events/view')
     },
     {
-      name: 'Promotion ansehen',
-      path: '/promotion/:name',
-      component: require('../views/promotions/view')
-    },
-     {
-      name: 'Promotion anlegen',
+      name: 'Promotion',
       path: '/promotion/create',
       component: require('../views/promotions/create')
     },
     {
-      name: 'Promotions ansehen',
+      name: 'Promotion',
+      path: '/promotion/:name',
+      component: require('../views/promotions/view')
+    },
+    {
+      name: 'Promotions',
       path: '/promotions',
       component: require('../views/promotions/index')
     },

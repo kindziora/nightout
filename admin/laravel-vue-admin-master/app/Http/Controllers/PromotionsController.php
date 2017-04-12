@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Promotion;
 
-
 class PromotionsController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('index');
     }
 
@@ -22,8 +22,10 @@ class PromotionsController extends Controller
     public function view($id)
     {
         $items = Promotion::find((integer)$id);
-        $items->event = $items->event;
-        return response()->json($items, 200,['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+        if ($items) {
+            $items->event = $items->event;
+        }
+        return response()->json($items, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
      /**
@@ -34,7 +36,7 @@ class PromotionsController extends Controller
     public function list(Request $request)
     {
         $items = Promotion::latest()->paginate(5);
-        return response()->json($items, 200,['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+        return response()->json($items, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -73,5 +75,4 @@ class PromotionsController extends Controller
         Promotion::find($id)->delete();
         return response()->json(['done']);
     }
- 
 }

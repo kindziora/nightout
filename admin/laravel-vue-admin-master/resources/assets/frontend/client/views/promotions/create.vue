@@ -1,5 +1,5 @@
 <template>
-  <form action="/event/create" method="POST">
+  <form action="/promotion/create" method="POST">
     <div class="tile is-parent">
       <article class="tile is-child box">
         <h1 class="title">Gutschein anlegen</h1>
@@ -25,13 +25,10 @@
             </div>
           </div>
   
-          <article class="tile is-child box">
-              <h1 class="title">Die Promotion verbinden</h1>
-              <div class="block">
-        
+     
                 <div class="control is-horizontal">
                   <div class="control-label">
-                    <label class="label">zu Event</label>
+                    <label class="label">für Event</label>
                   </div>
                   <div class="control is-grouped">
                     <div class="select is-fullwidth">
@@ -53,7 +50,7 @@
         
                 <div class="control is-horizontal">
                   <div class="control-label">
-                    <label class="label">zu Location</label>
+                    <label class="label">bei Location</label>
                   </div>
                   <div class="control is-grouped">
                     <div class="select is-fullwidth">
@@ -72,9 +69,8 @@
                     </div>
                   </div>
                 </div>
-                
-              </div>
-          </article>   
+
+ 
                
                
           <div class="control is-horizontal">
@@ -93,10 +89,10 @@
           
           <div class="control is-horizontal">
             <div class="control-label">
-              <label class="label">Anzahl der Gutscheine Begrenzen</label>
+              <label class="label">Gutscheine Begrenzen</label>
             </div>
             <div class="control">
-              <input id="limit" name="limit" type="number" placeholder="1 oder 100000" pattern="[0-9]" />
+              <input id="limit" class="input" name="limit" type="number" placeholder="1 oder 100000" pattern="[0-9]" />
             </div>
           </div>
   
@@ -166,6 +162,7 @@
     data() {
       return {
         location: null,
+        event: null,
         selected: null,
         options: [],
         zoom: 8,

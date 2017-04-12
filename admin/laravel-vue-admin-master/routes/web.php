@@ -17,6 +17,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/home', 'AdminController@index')->name('root');
     
     //user
+    Route::post('/register', 'Auth\RegisterController@register')->name('register');
     Route::post('/login', 'Auth\LoginController@login')->name('login');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
     
