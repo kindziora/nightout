@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -68,8 +68,8 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'vorname' => $data['vorname'],
-            'nachname' => $data['nachname'],
+            'vorname' => "",
+            'nachname' => "",
             'images' => isset($data['images'])?$data['images']:"[]",
             'password' => bcrypt($data['password']),
         ]);
@@ -87,7 +87,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-        
+        ;
         $login = ['result' => $this->guard()->login($user)];
 
         return response()->json($login, 200);

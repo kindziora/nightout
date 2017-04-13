@@ -15,7 +15,7 @@
               </p>
             </div>
           </div>
-          
+  
           <div class="control is-horizontal">
             <div class="control-label">
               <label class="label">Beschreibung</label>
@@ -25,54 +25,40 @@
             </div>
           </div>
   
-     
-                <div class="control is-horizontal">
-                  <div class="control-label">
-                    <label class="label">für Event</label>
-                  </div>
-                  <div class="control is-grouped">
-                    <div class="select is-fullwidth">
-                      <p class="control is-expanded">
-                        <v-select 
-                        :debounce="250" 
-                        v-model="event"
-                         :on-search="getOptions"
-                          :options="options" 
-                          placeholder="Event finden..."
-                           label="title">
-                        </v-select>
-                      </p>
-                      <input class="input hidden" type="text" name="event"
-                       v-model="event" />
-                    </div>
-                  </div>
-                </div>
-        
-                <div class="control is-horizontal">
-                  <div class="control-label">
-                    <label class="label">bei Location</label>
-                  </div>
-                  <div class="control is-grouped">
-                    <div class="select is-fullwidth">
-                      <p class="control is-expanded">
-                        <v-select 
-                        :debounce="250" 
-                        v-model="location"
-                         :on-search="getOptions"
-                          :options="options" 
-                          placeholder="Location finden..."
-                           label="title">
-                        </v-select>
-                      </p>
-                      <input class="input hidden" type="text" name="location"
-                       v-model="location" />
-                    </div>
-                  </div>
-                </div>
-
- 
-               
-               
+  
+          <div class="control is-horizontal">
+            <div class="control-label">
+              <label class="label">für Event</label>
+            </div>
+            <div class="control is-grouped">
+              <div class="select is-fullwidth">
+                <p class="control is-expanded">
+                  <v-select :debounce="250" v-model="event" :on-search="getOptions" :options="options" placeholder="Event finden..." label="title">
+                  </v-select>
+                </p>
+                <input class="input hidden" type="text" name="event" v-model="event" />
+              </div>
+            </div>
+          </div>
+  
+          <div class="control is-horizontal">
+            <div class="control-label">
+              <label class="label">bei Location</label>
+            </div>
+            <div class="control is-grouped">
+              <div class="select is-fullwidth">
+                <p class="control is-expanded">
+                  <v-select :debounce="250" v-model="location" :on-search="getOptions" :options="options" placeholder="Location finden..." label="title">
+                  </v-select>
+                </p>
+                <input class="input hidden" type="text" name="location" v-model="location" />
+              </div>
+            </div>
+          </div>
+  
+  
+  
+  
           <div class="control is-horizontal">
             <div class="control-label">
               <label class="label">Zeitliche Begrenzung</label>
@@ -86,7 +72,7 @@
               </p>
             </div>
           </div>
-          
+  
           <div class="control is-horizontal">
             <div class="control-label">
               <label class="label">Gutscheine Begrenzen</label>
@@ -116,7 +102,7 @@
             <button class="button is-link">Cancel</button>
           </div>
         </div>
-        
+  
       </article>
     </div>
   </form>
@@ -185,10 +171,10 @@
         return this.$el.method.toLowerCase()
       },
       form_action: function() {
-         console.log(this);
+        console.log(this);
         return this.$el.action.toLowerCase()
       },
-      location_id: function() { 
+      location_id: function() {
         return parseInt(this.location.id);
       }
     },

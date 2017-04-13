@@ -1,72 +1,65 @@
 <template>
   <form action="/register" method="POST">
-    <div class="tile is-parent is-12 center-by-margin">
+    <div class="tile is-parent is-6 center-by-margin">
       <article class="tile is-child box">
         <h1 class="title">Anmelden!</h1>
         <h2 class="subtitle">Gleich gehts los</h2>
         <div class="block">
+  
+          <div class="field">
+            <label class="label">Email</label>
+            <p class="control has-icon has-icon-right">
+              <input v-bind:class="{ 'is-warning': error.email }" class="input" type="email" name="email" placeholder="E-Mail">
+              <span v-if="error.email" class="icon is-small">
+                              <i class="fa fa-warning"></i>
+                            </span>
+            </p>
+            <p v-for="err in error.email" class="help is-danger">{{err}}</p>
+  
+          </div>
+  
+          <div class="field">
+            <label class="label">Username</label>
+            <p class="control has-icon has-icon-right">
+              <input v-bind:class="{ 'is-warning': error.name }" class="input" type="text" name="name" placeholder="dieser Name ist für alle sichtbar">
+              <span v-if="error.name" class="icon is-small">
+                              <i class="fa fa-warning"></i>
+                            </span>
+            </p>
+            <p v-for="err in error.name" class="help is-danger">{{err}}</p>
+          </div>
+  
+          <div class="field">
+            <label class="label">Passwort</label>
+            <p class="control has-icon has-icon-right">
+              <input v-bind:class="{ 'is-warning': error.password }" class="input" type="Password" name="password" placeholder="Password">
+              <span v-if="error.password" class="icon is-small">
+                              <i class="fa fa-warning"></i>
+                            </span>
+            </p>
+            <p v-for="err in error.password" class="help is-danger">{{err}}</p>
+          </div>
 
-         <div class="msg"></div>
-  
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">E-Mail</label>
-            </div>
-            <div class="control">
-              <input class="input is-danger" type="email" name="email" placeholder="E-Mail">
-            </div>
+          <div class="field">
+            <label class="label">Passwort wiederholen</label>
+            <p class="control has-icon has-icon-right">
+              <input v-bind:class="{ 'is-warning': error.password_confirmation }" class="input" type="Password" name="password_confirmation" placeholder="Password nochmal">
+              <span v-if="error.password_confirmation" class="icon is-small">
+                              <i class="fa fa-warning"></i>
+                            </span>
+            </p>
+            <p v-for="err in error.password_confirmation" class="help is-danger">{{err}}</p>
           </div>
-  
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">Username</label>
-            </div>
-            <div class="control">
-              <input class="input" type="text" name="name" placeholder="dieser Name ist für alle sichtbar">
-            </div>
-          </div>
-  
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">Passwort</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="password" name="password" placeholder="Password">
-              </p>
-              <p class="control is-expanded">
-                <input class="input" type="password" name="password_confirmation" placeholder="Password nochmal">
-              </p>
-            </div>
-          </div>
-  
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">Name</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" name="vorname" placeholder="Hans">
-              </p>
-              <p class="control is-expanded">
-                <input class="input" type="text" name="nachname" placeholder="Müller">
-              </p>
-            </div>
-          </div>
-  
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">Bild</label>
-            </div>
+
+          <div class="control">
+            <label class="label">Bild</label>
             <div class="control">
               <input id="file" name="image[]" type="file" accept="image/*">
             </div>
           </div>
   
           <p class="control">
-            <button class="button is-success" v-on:click.prevent="onSubmit">
-                              starten
-                            </button>
+            <button class="button is-success" v-on:click.prevent="onSubmit">starten</button>
           </p>
   
         </div>
@@ -90,17 +83,21 @@
     message: '',
     type: '',
     direction: '',
-    duration: 4500,
-    container: '.msg'
+    duration: 14500
   }) => {
     return new NotificationComponent({
       el: document.createElement('div'),
       propsData
     })
   }
-
-
+  
+  
   export default {
+    data() {
+      return {
+        error: {},
+      }
+    },
     components: {
       Notification
     },
@@ -117,19 +114,19 @@
         var formData = new FormData(this.$el)
         this.$http[this.form_method](this.form_action, formData)
           .then(this.successCallBack, this.errorCallBack)
-          .catch(function(error){
-              console.log(error);
+          .catch(function(error) {
+            console.log(error);
           })
       },
       successCallBack: function(response) {
         console.log('AjaxForm submission: SUCCESS')
-
+  
         openNotification({
           title: 'Dein Account ' + response.data.title,
           message: 'Wurde erfolgreich angelegt.',
           type: "success"
         })
-
+  
         localStorage.setItem("me", JSON.stringify(response.data))
   
         router.push({
@@ -137,16 +134,7 @@
         })
       },
       errorCallBack: function(response) {
-        console.log(response);
-
-        openNotification({
-          title: 'Hinweis ',
-          message: response.data,
-          type: "error" 
-        })
-
-
-
+        this.$data.error = response.response.data
       }
     }
   }
