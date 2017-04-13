@@ -36,7 +36,7 @@ class LocationsController extends Controller
      */
     public function store(Request $request)
     {
-        $create = Item::create($request->all());
+        $create = Location::create($request->all());
         return response()->json($create);
     }
 
@@ -49,7 +49,7 @@ class LocationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $edit = Item::find($id)->update($request->all());
+        $edit = Location::find($id)->update($request->all());
         return response()->json($edit);
     }
 
@@ -61,7 +61,7 @@ class LocationsController extends Controller
      */
     public function destroy($id)
     {
-        Item::find($id)->delete();
+        Location::find($id)->delete();
         return response()->json(['done']);
     }
 }
