@@ -45,7 +45,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('promotion/{id}', 'PromotionsController@view');
     
     // image uploads
-    Route::get('resizeImage', 'ImageController@resizeImage');
     Route::post('resizeImagePost', ['as'=>'resizeImagePost','uses'=>'ImageController@resizeImagePost']);
     
 

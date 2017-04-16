@@ -30,9 +30,12 @@
 
 <script>
   import FormData from 'form-data'
-  import router from 'vue-router'
+  import router from '../../router'
+  import Vue from 'vue';
 
   export default {
+    components: {
+    },
     computed: {
       form_method: function () {
         return this.$el.method.toLowerCase()

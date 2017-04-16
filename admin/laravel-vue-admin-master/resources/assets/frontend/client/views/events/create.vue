@@ -93,7 +93,8 @@
   import Vue from 'vue';
   import Notification from 'vue-bulma-notification'
   import Datepicker from 'vue-bulma-datepicker'
-  
+  import VbSwitch from 'vue-bulma-switch'
+
   const NotificationComponent = Vue.extend(Notification)
   
   const openNotification = (propsData = {
@@ -128,7 +129,8 @@
     components: {
       vSelect,
       Notification,
-      Datepicker
+      Datepicker,
+      VbSwitch
     },
     data() {
       return {

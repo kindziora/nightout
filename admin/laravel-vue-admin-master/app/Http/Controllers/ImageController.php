@@ -9,16 +9,6 @@ use Image;
 class ImageController extends Controller
 {
 
-	/**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function resizeImage()
-    {
-    	return view('resizeImage');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -27,7 +17,6 @@ class ImageController extends Controller
     public function resizeImagePost(Request $request)
     {
 	    $this->validate($request, [
-	    	'title' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -35,13 +24,13 @@ class ImageController extends Controller
         $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
      
    
-        $destinationPath = public_path('/thumbnail');
+        $destinationPath = public_path('/thumbnail/' . $request->get('type'));
         $img = Image::make($image->getRealPath());
         $img->resize(100, 100, function ($constraint) {
 		    $constraint->aspectRatio();
 		})->save($destinationPath.'/'.$input['imagename']);
 
-        $destinationPath = public_path('/images');
+        $destinationPath = public_path('/images/' . $request->get('type'));
         $image->move($destinationPath, $input['imagename']);
 
         $this->postImage->add($input);
