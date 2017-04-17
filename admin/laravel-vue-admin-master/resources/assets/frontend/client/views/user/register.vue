@@ -121,8 +121,8 @@
         console.log('AjaxForm submission: SUCCESS')
   
         openNotification({
-          title: 'Dein Account ' + response.data.title,
-          message: 'Wurde erfolgreich angelegt.',
+          title: 'Willkommen ' + response.data.name,
+          message: 'Account wurde erfolgreich angelegt.',
           type: "success"
         })
   
@@ -131,6 +131,7 @@
         router.push({
           path: 'Home'
         })
+        
       },
       errorCallBack: function(response) {
         this.$data.error = response.response.data

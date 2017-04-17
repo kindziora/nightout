@@ -11,7 +11,7 @@
             </div>
             <div class="control is-grouped">
               <p class="control is-expanded">
-                <input class="input" type="text" name="title" placeholder="Wie heißt die Aktion...">
+                <input class="input" type="text" name="name" placeholder="Wie heißt die Aktion...">
               </p>
             </div>
           </div>
@@ -84,7 +84,7 @@
               <label class="label">Gutscheine Begrenzen</label>
             </div>
             <div class="control">
-              <input id="limit" class="input" name="limit" type="number" placeholder="1 oder 100000" pattern="[0-9]" />
+              <input id="limit" class="input" name="limit" type="number" placeholder="1 oder 100000" value="100" pattern="[0-9]" />
             </div>
           </div>
   
@@ -185,7 +185,10 @@
         return this.$el.action.toLowerCase()
       },
       location_id: function() {
-        return parseInt(this.location.id);
+        return parseInt(this.location?this.location.id:0);
+      },
+      event_id: function() {
+        return parseInt(this.event?this.event.id:0);
       }
     },
     methods: {

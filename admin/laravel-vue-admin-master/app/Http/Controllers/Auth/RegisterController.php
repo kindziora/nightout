@@ -49,11 +49,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'required' => 'Das :attribute ist erforderlich.',
+            'min' => 'Mindestens :attribute Zeichen angeben.',
+            'max' => 'Maximal :attribute Zeichen erlaubt.',
+            'unique' => ':attribute schon vergeben.',
+            'confirmed' => 'Passwort stimmt nicht überein.'
+        ];
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-        ]);
+        ], $messages);
     }
 
     /**
@@ -87,10 +94,10 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-        ;
-        $login = ['result' => $this->guard()->login($user)];
+        
+        $this->guard()->login($user);
 
-        return response()->json($login, 200);
+        return response()->json($this->guard()->user(), 200);
 
     }
 }
