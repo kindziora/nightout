@@ -2,6 +2,21 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Listen for XDebug",
+			"type": "php",
+			"request": "launch",
+			"port": 9000,
+			"log": true
+		},
+		{
+			"name": "Launch php",
+			"request": "launch",
+			"type": "php",
+			"program": "${file}",
+			"cwd": "${workspaceRoot}",
+			"externalConsole": false
+		},
+		{
 			"name": "Launch",
 			"type": "node",
 			"request": "launch",
@@ -32,6 +47,20 @@
 			"outDir": null,
 			"localRoot": "${workspaceRoot}",
 			"remoteRoot": null
+		},
+		{
+			"name": "Launch chrome",
+			"type": "chrome",
+			"request": "launch",
+			"url": "http://lo.cal:8000/#/login",
+			"webRoot": "/home/a/projekte/nightout/admin/laravel-vue-admin-master/resources/assets/frontend/client/app.js"
+		},
+		{
+			"name": "Launch index.html (disable sourcemaps)",
+			"type": "chrome",
+			"request": "launch",
+			"sourceMaps": false,
+			"file": "${workspaceRoot}/index.html"
 		}
 	]
 }

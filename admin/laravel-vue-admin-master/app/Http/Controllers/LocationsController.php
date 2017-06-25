@@ -14,6 +14,19 @@ class LocationsController extends Controller
 
     ///AJAX STUFF
 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function view($id)
+    {
+        $items = Location::find((integer)$id);
+        return response()->json($items, 200,['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+    }
+
+
      /**
      * Display a listing of the resource.
      *
