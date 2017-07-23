@@ -32,9 +32,27 @@
   import FormData from 'form-data'
   import router from '../../router'
   import Vue from 'vue';
-
+  
+  import Notification from 'vue-bulma-notification'
+  
+  const NotificationComponent = Vue.extend(Notification)
+  
+  const openNotification = (propsData = {
+    title: '',
+    message: '',
+    type: '',
+    direction: '',
+    duration: 14500
+  }) => {
+    return new NotificationComponent({
+      el: document.createElement('div'),
+      propsData
+    })
+  }
+  
   export default {
     components: {
+      Notification
     },
     computed: {
       form_method: function () {
@@ -48,7 +66,7 @@
       onSubmit: function (event) {
         var formData = new FormData(this.$el)
         this.$http[this.form_method](this.form_action, formData)
-          .then(this.successCallBack, this.errorCallBack)
+          .then(this.successCallBack, this.errorCallBack, this.errorCallBack)
       },
       successCallBack: function (response) {
         console.log('AjaxForm submission: SUCCESS')
@@ -57,8 +75,13 @@
 
         router.push({ path: 'Home' })
       },
-      errorCallBack: function (response) {
-        console.log('AjaxForm submission: ERROR', response)
+      errorCallBack: function (response, data) {
+        console.log('AjaxForm submission: ERROR', response, data)
+        openNotification({
+          title: 'Fehler',
+          message: response.email || response.password,
+          type: "error"
+        })
       }
     }
   }
