@@ -74,6 +74,7 @@
         localStorage.setItem("me", JSON.stringify(response.data))
 
         router.push({ path: 'Home' })
+        
       },
       errorCallBack: function (response, data) {
         console.log('AjaxForm submission: ERROR', response, data)
