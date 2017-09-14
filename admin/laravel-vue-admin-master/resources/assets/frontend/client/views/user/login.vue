@@ -67,9 +67,10 @@
         var formData = new FormData(this.$el)
         this.$http[this.form_method](this.form_action, formData)
           .then(this.successCallBack, this.errorCallBack, this.errorCallBack)
-      },
+      }, 
       successCallBack: function (response) {
-        console.log('AjaxForm submission: SUCCESS')
+        
+        console.log('AjaxForm submission: SUCCESS', response)
 
         localStorage.setItem("me", JSON.stringify(response.data))
 

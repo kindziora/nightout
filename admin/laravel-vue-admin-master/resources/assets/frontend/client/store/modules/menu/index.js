@@ -11,7 +11,7 @@ import tables from './tables'
 
 const state = {
   items: [
-    {
+   /* {
       name: 'Dashboard',
       path: '/dashboard',
       meta: {
@@ -28,7 +28,7 @@ const state = {
         link: 'axios/index.vue'
       },
       component: lazyLoading('axios', true)
-    },
+    },*/
     {
       name: 'About',
       path: '/about',

@@ -2,6 +2,7 @@
   <section class="hero is-bold app-navbar animated" :class="{ slideInDown: show, slideOutDown: !show }">
     <div class="hero-head">
       <nav class="nav">
+        
         <div class="nav-left">
           <a class="nav-item is-hidden-tablet" @click="toggleSidebar(!sidebar.opened)">
             <i class="fa fa-bars" aria-hidden="true"></i>
@@ -14,13 +15,21 @@
      
         </div>
         <div class="nav-right is-flex">
-          <a class="nav-item is-tab" href="/user/news">
-            <i class="fa fa-bell-o"></i>
-          </a>
-          <a class="nav-item is-tab" href="/user/me">
-            <i class="fa fa-user" aria-hidden="true"></i>
-          </a>
+          
+          <router-link :to="{ path: 'user/news' }"  class="nav-item is-tab">
+            <i class="fa fa-bell-o"> </i>
+          </router-link>
+          
+       <expanding v-if="user">
+          <router-link :to="{ path: 'logout' }" class="nav-item is-tab">
+              <i class="fa fa-sign-out"> </i>
+         </router-link> 
+       </expanding>
+         
+        
+           
         </div>
+     
       </nav>
     </div>
   </section>
@@ -28,6 +37,9 @@
 
 <script>
   import Tooltip from 'vue-bulma-tooltip'
+  
+  import router from 'vue-router'
+  
   import {
     mapGetters,
     mapActions
@@ -36,7 +48,8 @@
   export default {
   
     components: {
-      Tooltip
+      Tooltip,
+      router
     },
   
     props: {
