@@ -2,7 +2,7 @@
   <div>
     <div class="tile is-ancestor" v-model="this.locations">
       <div class="tile is-parent" v-for="p in locations" :value="p">
-        <router-link :to="{ path: 'event/' + p.id }">
+        <router-link :to="{ path: 'events/' + p.id }">
           <article class="tile is-child box">
 
             <p class="title">{{p.title}}

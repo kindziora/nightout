@@ -4,43 +4,49 @@
       <article class="tile is-child box">
         <h1 class="title">Gutschein anlegen</h1>
         <div class="block">
-  
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">Titel</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" name="name" placeholder="Wie heißt die Aktion...">
-              </p>
-            </div>
-          </div>
-  
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">Beschreibung</label>
-            </div>
-            <div class="control">
-              <textarea class="textarea" name="description" placeholder="Beschreibe die Aktion..."></textarea>
-            </div>
+   
+          <div class="field">
+            <label class="label">Titel</label>
+            <p class="control has-icon has-icon-right">
+              <input v-bind:class="{ 'is-warning': error.name }" class="input" type="text" name="name" placeholder="Wie heißt die Gutschein Aktion...">
+              <span v-if="error.name" class="icon is-small">
+                              <i class="fa fa-warning"></i>
+                            </span>
+            </p>
+            <p v-for="err in error.name" class="help is-danger">{{err}}</p>
           </div>
   
   
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">für Event</label>
-            </div>
-            <div class="control is-grouped">
-              <div class="select is-fullwidth">
+         <div class="field">
+            <label class="label">Beschreibung</label>
+            <p class="control has-icon has-icon-right">
+              <input v-bind:class="{ 'is-warning': error.description }" class="input" type="text" name="description" placeholder="Beschreibe die Aktion...">
+              <span v-if="error.description" class="icon is-small">
+                              <i class="fa fa-warning"></i>
+                            </span>
+            </p>
+            <p v-for="err in error.description" class="help is-danger">{{err}}</p>
+          </div> 
+          
+           <div class="field">
+            <label class="label">für Event</label>
+            <p class="control has-icon has-icon-right">
+                
+               <div class="select is-fullwidth">
                 <p class="control is-expanded">
-                  <v-select :debounce="250" v-model="event" :on-search="getOptions" :options="options" placeholder="Event finden..." label="title">
+                  <v-select  v-bind:class="{ 'is-warning': error.event }"  :debounce="250" v-model="event" :on-search="getEventOptions" :options="eventOptions" placeholder="Event finden..." label="title">
                   </v-select>
                 </p>
+            
                 <input class="input hidden" type="text" name="event" v-model="event" />
               </div>
-            </div>
-          </div>
-  
+              
+       
+            </p>
+            <p v-for="err in error.event" class="help is-danger">{{err}}</p>
+          </div> 
+          
+         
           <div class="control is-horizontal">
             <div class="control-label">
               <label class="label">bei Location</label>
@@ -157,11 +163,14 @@
     },
     data() {
       return {
+        error: {},
         location: null,
         event: null,
         selected: null,
         options: [],
+        eventOptions : [],
         zoom: 8,
+        limit: 100,
         latLng: {
           lat: 10,
           lng: 10
@@ -194,10 +203,19 @@
     methods: {
       getOptions(search, loading) {
         loading(true)
-        this.$http.get('https://lo.cal/locations/list', {
+        this.$http.get('/locations/list', {
           name: search
         }).then(resp => {
           this.options = resp.data.data
+          loading(false)
+        })
+      },
+      getEventOptions(search, loading) {
+        loading(true)
+        this.$http.get('/events/list', {
+          name: search
+        }).then(resp => {
+          this.eventOptions = resp.data.data
           loading(false)
         })
       },
@@ -214,13 +232,16 @@
       },
       successCallBack: function(response) {
         openNotification({
-          title: 'Promotion ' + response.data.title,
+          title: 'Promotion ' + response.data.name,
           message: 'Wurde erfolgreich angelegt.',
           type: "success"
         })
       },
       errorCallBack: function(response) {
+        this.$data.error = response.response.data
         console.log('AjaxForm submission: ERROR', response)
+        
+        
       },
       setDescription(description) {
         this.description = description;

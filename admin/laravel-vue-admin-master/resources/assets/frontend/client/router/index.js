@@ -31,32 +31,32 @@ export default new Router({
     },
     {
       name: 'Location anlegen',
-      path: '/location/create',
+      path: '/locations/create',
       component: require('../views/locations/create')
     },
     {
       name: 'Location ansehen',
-      path: '/location/:name',
+      path: '/locations/:name',
       component: require('../views/locations/view')
     },
     {
       name: 'Event anlegen',
-      path: '/event/create',
+      path: '/events/create',
       component: require('../views/events/create')
     },
     {
       name: 'Event ansehen',
-      path: '/event/:name',
+      path: '/events/:name',
       component: require('../views/events/view')
     },
     {
       name: 'Promotion',
-      path: '/promotion/create',
+      path: '/promotions/create',
       component: require('../views/promotions/create')
     },
     {
       name: 'Promotion',
-      path: '/promotion/:name',
+      path: '/promotions/:name',
       component: require('../views/promotions/view')
     },
     {

@@ -2,7 +2,6 @@
   <form action="/location/create" method="POST">
     <div class="tile is-parent">
       <article class="tile is-child box">
-        <h1 class="title">Location anlegen</h1>
         <div class="block">
   
           <div class="control is-horizontal">

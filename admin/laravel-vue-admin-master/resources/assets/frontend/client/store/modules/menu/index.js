@@ -1,6 +1,8 @@
 import * as types from '../../mutation-types'
 import lazyLoading from './lazyLoading'
-import charts from './charts'
+import events from './events'
+import promotions from './promotions'
+import locations from './locations'
 import uifeatures from './uifeatures'
 import components from './components'
 import tables from './tables'
@@ -38,25 +40,9 @@ const state = {
       },
       component: lazyLoading('info', true)
     },
-    {
-      name: 'locations',
-      path: '/locations',
-      meta: {
-        icon: 'fa-map',
-        link: 'locations/index.vue'
-      },
-      component: lazyLoading('locations', true)
-    },
-    {
-      name: 'events',
-      path: '/events',
-      meta: {
-        icon: 'fa-events',
-        link: 'events/index.vue'
-      },
-      component: lazyLoading('events', true)
-    },
-    charts,
+    events,
+    locations,
+    promotions,
     uifeatures,
     components,
     tables

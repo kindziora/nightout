@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Promotion;
+use Illuminate\Support\Facades\Validator;
 
 class PromotionsController extends Controller
 {
@@ -40,6 +41,26 @@ class PromotionsController extends Controller
     }
 
     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        $messages = [
+            'required' => 'Das Feld :attribute ist erforderlich.'
+        ];
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
+            'event' => 'required|max:255',
+            'location' => 'required|max:255',
+        ], $messages);
+    }
+
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -47,6 +68,8 @@ class PromotionsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validator($request->all())->validate();
+        
         $create = Promotion::create($request->all());
         return response()->json($create);
     }

@@ -16,6 +16,7 @@ class Code extends Model
     protected $fillable = [
         'value',
         'used',
+        'valid',
         'promotion_id'
     ];
 

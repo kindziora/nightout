@@ -2,7 +2,6 @@
   <form action="/event/create" method="POST">
     <div class="tile is-parent">
       <article class="tile is-child box">
-        <h1 class="title">Ereignis anlegen</h1>
         <div class="block">
   
           <div class="control is-horizontal">
@@ -167,7 +166,7 @@
     methods: {
       getOptions(search, loading) {
         loading(true)
-        this.$http.get('https://lo.cal/locations/list', {
+        this.$http.get('https://nightout-akindziora.c9users.io/locations/list', {
           name: search
         }).then(resp => {
           this.options = resp.data.data
