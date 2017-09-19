@@ -17,7 +17,7 @@ class LoginController extends Controller
     | This controller handles authenticating users for the application and
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
-    |
+    | https://medium.com/@simonhamp/why-and-how-to-override-laravel-s-built-in-auth-controller-methods-60f070897ac6
     */
 
     use AuthenticatesUsers;
@@ -64,7 +64,7 @@ class LoginController extends Controller
     public function sendFailedLoginResponse($request)
     {
         $errors = [$this->username() => trans('auth.failed')];
-        return response()->json($errors, 422);
+        return response()->json($errors, 400);
     }
 
      /**

@@ -51,8 +51,8 @@ class RegisterController extends Controller
     {
         $messages = [
             'required' => 'Das :attribute ist erforderlich.',
-            'min' => 'Mindestens :attribute Zeichen angeben.',
-            'max' => 'Maximal :attribute Zeichen erlaubt.',
+            'min' => 'Mindestens :min Zeichen angeben.',
+            'max' => 'Maximal :max Zeichen erlaubt.',
             'unique' => ':attribute schon vergeben.',
             'confirmed' => 'Passwort stimmt nicht überein.'
         ];
