@@ -64,7 +64,8 @@
               <label class="label">Bild</label>
             </div>
             <div class="control">
-              <input id="file" name="image[]" type="file" accept="image/*">
+              <input id="file" name="image[]" type="file" accept="image/*" v-on:change="onFileChange">
+               <img :src="image" class="img-responsive" id="img">
             </div>
           </div>
   
@@ -133,6 +134,7 @@
     },
     data() {
       return {
+        image: "",
         location: null,
         selected: null,
         options: [],
@@ -160,10 +162,24 @@
         return this.$el.action.toLowerCase()
       },
       location_id: function() { 
-        return parseInt(this.location.id);
+        return this.location != null ? parseInt(this.location.id):0;
       }
     },
     methods: {
+      onFileChange(e) {
+          let files = e.target.files || e.dataTransfer.files;
+          if (!files.length)
+              return;
+          this.createImage(files[0]);
+      },
+      createImage(file) {
+          let reader = new FileReader();
+          let vm = this;
+          reader.onload = (e) => {
+              vm.image = e.target.result;
+          };
+          reader.readAsDataURL(file);
+      },
       getOptions(search, loading) {
         loading(true)
         this.$http.get('https://nightout-akindziora.c9users.io/locations/list', {
@@ -179,6 +195,10 @@
         formData.append('images', JSON.stringify(["bild1"]))
         formData.append('creator_id', JSON.parse(localStorage.getItem("me")).id)
         formData.set('location_id', this.location_id)
+  
+          this.$http.post('/image/upload',{image: this.image}).then(response => {
+
+          });
   
         this.$http[this.form_method](this.form_action, formData)
           .then(this.successCallBack, this.errorCallBack)
@@ -214,6 +234,7 @@
 </style>
 
 <style>
+
   .center-by-margin {
     margin-left: auto;
     margin-right: auto;

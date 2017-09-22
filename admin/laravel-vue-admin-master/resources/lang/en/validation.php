@@ -102,7 +102,8 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
-
+    'image64' => 'The :attribute must be a file of type: :values.',
+    
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
