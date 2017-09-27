@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
-
+use App\Helper\Images;
 
 class EventsController extends Controller
 {
@@ -44,7 +44,26 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        $create = Event::create($request->all());
+        $img = new Images();
+        $imgResult = $img->upload($request);
+        
+        if(!empty($imgResult['errors']->getMessages())){
+            return response()->json($imgResult['errors'], 500);
+        }
+        
+        $data = $request->all() + ['images' => $imgResult['images']];
+        
+        $validator = Event::validate($data);
+        
+        if($validator->fails()) {
+            $create = $validator->validate();
+            $img->cleanup([$imgResult['images']]);
+            
+            return response()->json($create, 500);
+        }else{
+            $create = Event::create($data);
+        }
+        
         return response()->json($create);
     }
 
@@ -57,7 +76,13 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $edit = Event::find($id)->update($request->all());
+        $img = new Images();
+        $imgResult = $img->upload($request);
+        
+        if(empty($imgResult['errors']->getMessages())){
+            $edit = Event::find($id)->update($request->all() + ['images' => $imgResult['images']]);
+        }
+        
         return response()->json($edit);
     }
 

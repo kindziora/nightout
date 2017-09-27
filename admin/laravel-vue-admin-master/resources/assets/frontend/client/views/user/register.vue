@@ -135,8 +135,7 @@
       },
       errorCallBack: function(response) {
         this.$data.error = response.response.data
-        alert(response);
-      }
+       }
     }
   }
 </script>

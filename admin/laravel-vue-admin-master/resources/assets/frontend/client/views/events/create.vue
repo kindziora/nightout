@@ -3,7 +3,7 @@
     <div class="tile is-parent">
       <article class="tile is-child box">
         <div class="block">
-  
+   
           <div class="control is-horizontal">
             <div class="control-label">
               <label class="label">Titel</label>
@@ -12,8 +12,14 @@
               <p class="control is-expanded">
                 <input class="input" type="text" name="title" placeholder="Wie heißt das Event...">
               </p>
-            </div>
+            </div> 
           </div>
+           
+          <div v-if="error.title" class="control is-horizontal">
+            <div class="control-label"></div>
+                <p v-for="err in error.title" class="control is-grouped help is-danger">{{err}}</p>
+          </div>
+            
           <div class="control is-horizontal">
             <div class="control-label">
               <label class="label">Beschreibung</label>
@@ -21,6 +27,11 @@
             <div class="control">
               <textarea class="textarea" name="description" placeholder="Beschreibe das Event..."></textarea>
             </div>
+          </div>
+  
+          <div v-if="error.description" class="control is-horizontal">
+            <div class="control-label"></div>
+                <p v-for="err in error.description" class="control is-grouped help is-danger">{{err}}</p>
           </div>
   
           <div class="control is-horizontal">
@@ -44,6 +55,11 @@
               </div>
             </div>
           </div>
+          
+          <div v-if="error.location" class="control is-horizontal">
+            <div class="control-label"></div>
+                <p v-for="err in error.location" class="control is-grouped help is-danger">{{err}}</p>
+          </div>
   
           <div class="control is-horizontal">
             <div class="control-label">
@@ -52,9 +68,11 @@
             <div class="control is-grouped">
               <p class="control is-expanded">
                 <datepicker placeholder="von" :config="{ enableTime: true, time_24hr: true, dateFormat: 'Y-m-d H:i' }" name="from"></datepicker>
+                <p v-for="err in error.from" class="help is-danger">{{err}}</p>
               </p>
               <p class="control is-expanded">
                 <datepicker placeholder="bis" :config="{ enableTime: true, time_24hr: true, dateFormat: 'Y-m-d H:i' }" name="to"></datepicker>
+                <p v-for="err in error.to" class="help is-danger">{{err}}</p>
               </p>
             </div>
           </div>
@@ -64,8 +82,9 @@
               <label class="label">Bild</label>
             </div>
             <div class="control">
-              <input id="file" name="image[]" type="file" accept="image/*" v-on:change="onFileChange">
+              <input id="file" name="image" type="file" accept="image/*" v-on:change="onFileChange">
                <img :src="image" class="img-responsive" id="img">
+                <p v-for="err in error.image" class="help is-danger">{{err}}</p>
             </div>
           </div>
   
@@ -134,6 +153,8 @@
     },
     data() {
       return {
+        title: "",
+        error: [],
         image: "",
         location: null,
         selected: null,
@@ -196,10 +217,6 @@
         formData.append('creator_id', JSON.parse(localStorage.getItem("me")).id)
         formData.set('location_id', this.location_id)
   
-          this.$http.post('/image/upload',{image: this.image}).then(response => {
-
-          });
-  
         this.$http[this.form_method](this.form_action, formData)
           .then(this.successCallBack, this.errorCallBack)
       },
@@ -211,12 +228,14 @@
         })
       },
       errorCallBack: function(response) {
-        console.log('AjaxForm submission: ERROR', response)
+        this.$data.error = response.response.data 
+        console.log('AjaxForm submission: ERROR', response.response.data)
       },
       setDescription(description) {
         this.description = description;
       },
       updateChild(e) {
+        
         this.latLng = {
           lat: e.geometry.location.lat(),
           lng: e.geometry.location.lng(),

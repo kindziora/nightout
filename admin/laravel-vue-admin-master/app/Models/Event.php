@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Event
  */
-class Event extends Model
+class Event extends ValidationModel
 {
     protected $table = 'events';
 
@@ -21,7 +21,20 @@ class Event extends Model
         'images',
         'location_id'
     ];
-
+    
+    public static $messages = [
+      'required' => ':attribute ist erforderlich.'
+    ];
+    
+    public static $rules = [
+        'title' => 'required',
+        'description' => 'required',
+        'from' => 'required',
+        'to' => 'required',
+        'images' => 'required',
+        'location_id' => 'required'
+    ];
+    
     protected $guarded = [];
 
     public function location()
