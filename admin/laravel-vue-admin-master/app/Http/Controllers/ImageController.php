@@ -26,7 +26,8 @@ class ImageController extends Controller
     {
         $getParams = $request->all();
         $img = new Images();
-        $imageData = $img->resize($getParams['name'], [$getParams['w'], $getParams['h']]);
+        
+        $imageData = $img->resize($getParams['name'], [(!isset($getParams['w']))?:$getParams['w'], (!isset($getParams['h']))?:$getParams['h']]);
         return response($imageData)->header('Content-type','image/png');
     }
 }

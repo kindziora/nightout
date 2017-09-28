@@ -16,7 +16,7 @@
       <div class="columns">
         <div class="column is-6">
           <div class="image is-2by2">
-            <img src="https://placehold.it/1000x1000">
+             <img :src="'/image/get?name=' + this.event.images[0] + '&w=1000'" />
           </div>
         </div>
         <div class="column is-5 is-offset-1">
@@ -148,7 +148,7 @@
     data() {
       return {
         params: {},
-        event: {title:"tz"},
+        event: {title:"tz", images: ['CFCFCF-1.png']},
         locations: [],
         labels: [],
         isloading: false,
@@ -164,7 +164,9 @@
         this.$http({
           url: api + name,
           transformResponse: [(data) => {
-            return JSON.parse(data)
+            var data = JSON.parse(data)
+            data.images = JSON.parse(data.images)
+            return data;
           }],
           params: { }
         }).then((response) => {
