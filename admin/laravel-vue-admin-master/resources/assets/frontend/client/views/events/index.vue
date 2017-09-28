@@ -5,14 +5,15 @@
         <router-link :to="{ path: 'events/' + p.id }">
           <article class="tile is-child box">
 
-            <p class="title">{{p.title}}
-            <span class="tag smallinfo">
-                    in 100m
-            </span></p>   
+            <p class="title">{{p.title}}<span class="tag smallinfo">in 100m</span></p>   
             
             <p class="subtitle">{{p.description}}</p>
-            <div class="content">
-              <img :src="p.images[0]" />
+            <div class="content has-text-centered">
+              
+              <figure class="image">
+                <img v-bind:src="'/upload/images/300x/' + p.images[0]" />
+              </figure>
+              
             </div>
 
           </article>

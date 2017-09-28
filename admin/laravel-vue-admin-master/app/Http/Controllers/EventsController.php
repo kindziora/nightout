@@ -51,7 +51,8 @@ class EventsController extends Controller
             return response()->json($imgResult['errors'], 500);
         }
         
-        $data = $request->all() + ['images' => $imgResult['images']];
+        $data = $request->all();
+        $data['images'] = json_encode([$imgResult['images']]);
         
         $validator = Event::validate($data);
         

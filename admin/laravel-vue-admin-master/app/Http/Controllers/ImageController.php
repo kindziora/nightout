@@ -21,5 +21,12 @@ class ImageController extends Controller
         return response()->json($img->upload($request));
       
     }
-
+    
+    public function get(Request $request)
+    {
+        $getParams = $request->all();
+        $img = new Images();
+        $imageData = $img->resize($getParams['name'], [$getParams['w'], $getParams['h']]);
+        return response($imageData)->header('Content-type','image/png');
+    }
 }

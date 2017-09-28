@@ -212,11 +212,10 @@
       },
       onSubmit: function(event) {
         var formData = new FormData(this.$el)
-  
-        formData.append('images', JSON.stringify(["bild1"]))
+        
         formData.append('creator_id', JSON.parse(localStorage.getItem("me")).id)
         formData.set('location_id', this.location_id)
-  
+        
         this.$http[this.form_method](this.form_action, formData)
           .then(this.successCallBack, this.errorCallBack)
       },

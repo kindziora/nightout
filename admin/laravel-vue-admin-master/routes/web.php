@@ -47,5 +47,6 @@ Route::group(['middleware' => ['web']], function () {
     // image uploads
     Route::post('resizeImagePost', ['as'=>'resizeImagePost','uses'=>'ImageController@resizeImagePost']);
     Route::post('image/upload', ['as'=>'upload','uses'=>'ImageController@upload']);
+    Route::get('image/get', ['as'=>'get','uses'=>'ImageController@get']);
 
 });
