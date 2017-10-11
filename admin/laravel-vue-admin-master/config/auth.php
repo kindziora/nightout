@@ -38,12 +38,11 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'users'
         ],
-
         'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
+            'driver' => 'passport',
+            'provider' => 'users'
         ],
     ],
 
@@ -61,6 +60,17 @@ return [
     | be assigned to any extra authentication guards you have defined.
     |
     | Supported: "database", "eloquent"
+    
+    
+    Encryption keys generated successfully.
+Personal access client created successfully.
+Client ID: 1
+Client Secret: 0sK136IaDIHbF5txx5GtyDkPYIGqwCPoiqoYnxU5
+Password grant client created successfully.
+Client ID: 2
+Client Secret: DFSANL4rbtD3U5IfFuCPYuVIiNvIWj5gvaiTOCdy
+    
+    
     |
     */
 

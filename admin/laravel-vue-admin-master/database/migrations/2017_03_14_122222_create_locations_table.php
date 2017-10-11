@@ -21,6 +21,10 @@ class CreateLocationsTable extends Migration
             $table->decimal('long', 10, 7);
             $table->decimal('lat', 10, 7);
             $table->string('address');
+            $table->string('city');
+            $table->string('country');
+            $table->string('postal');
+            $table->string('street');
             $table->timestamps();
         });
     }

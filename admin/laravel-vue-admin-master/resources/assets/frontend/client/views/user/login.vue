@@ -1,5 +1,5 @@
 <template>
-  <form action="/login" method="POST">
+  <form action="/api/login" method="POST">
     <div class="tile is-parent is-6 center-by-margin">
       <article class="tile is-child box">
         <h1 class="title">Hallo!</h1>

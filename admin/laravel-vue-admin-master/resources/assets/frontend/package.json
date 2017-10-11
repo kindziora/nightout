@@ -64,6 +64,7 @@
     "vue-lory": "0.0.4",
     "vue-multiselect": "^2.0.0-beta.15",
     "vue-nprogress": "0.1.5",
+    "vue-passport": "^1.0.2",
     "vue-peity": "0.5.0",
     "vue-router": "^2.3.0",
     "vue-select": "github:sagalbot/vue-select",

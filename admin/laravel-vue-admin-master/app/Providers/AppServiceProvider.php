@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
         Validator::replacer('image64', function($message, $attribute, $rule, $parameters) {
             return str_replace(':values',join(",",$parameters),$message);
         });
+
+        
     }
 
     /**
