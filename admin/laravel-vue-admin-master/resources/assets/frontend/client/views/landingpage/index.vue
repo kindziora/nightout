@@ -32,7 +32,7 @@
       <div class="container">
         <div class="tabs is-centered">
           <ul>
-            <li><a>schon dabei? <a>hier einloggen</a></a></li>
+            <li><a>schon dabei?<router-link :to="{ path: 'login' }" class="is-link"><strong>hier einloggen</strong></router-link></a></li>
           </ul>
         </div>
       </div>
@@ -45,6 +45,7 @@
 
 import Vue from 'vue';
 import * as VueGoogleMaps from 'vue2-google-maps';
+import router from 'vue-router';
 
   Vue.use(VueGoogleMaps, {
     load: {
@@ -54,11 +55,14 @@ import * as VueGoogleMaps from 'vue2-google-maps';
   });
 
 export default {
+   components: {
+      router
+    },
   data () {
     return {
         selected: null,
         options: ['bar', 'club', 'cafe', 'restaurant', 'kino', 'sonstiges'],
-        zoom: 11.5,
+        zoom: 9,
         latLng: {
           lat: 52.520008,
           lng: 13.404954
@@ -80,6 +84,10 @@ export default {
         me.latLng.lng = pos.coords.longitude;
       })
     },
+  mounted() {
+      let me = this;
+      window.setTimeout(()=>me.zoom = 11,2000)
+  }
 }
 </script>
 

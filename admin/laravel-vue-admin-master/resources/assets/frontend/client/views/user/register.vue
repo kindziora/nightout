@@ -145,4 +145,7 @@
     margin-left: auto;
     margin-right: auto;
   }
+  article.box{
+    width: inherit;
+  }
 </style>

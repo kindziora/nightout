@@ -11,7 +11,7 @@ export default new Router({
     {
       name: 'Home',
       path: '/',
-      component: require('../views/explore')
+      component: require('../views/landingpage')
     },
     {
       name: 'login',

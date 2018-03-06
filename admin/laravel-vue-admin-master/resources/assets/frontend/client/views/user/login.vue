@@ -1,31 +1,54 @@
 <template>
   <form action="/api/login" method="POST">
+    
     <div class="tile is-parent is-6 center-by-margin">
-      <article class="tile is-child box">
-        <h1 class="title">Hallo!</h1>
-        <h2 class="subtitle">Gleich gehts los</h2>
-        <div class="block">
-          <p class="control has-icon">
-            <input class="input" type="email" name="email" placeholder="E-Mail">
-            <span class="icon is-small">
-                    <i class="fa fa-envelope"></i>
-                  </span>
-          </p>
-          <p class="control has-icon">
-            <input class="input" type="password" name="password" placeholder="Password">
-            <span class="icon is-small">
-                    <i class="fa fa-lock"></i>
-                  </span>
-          </p>
-          <p class="control">
-            <button class="button is-success" v-on:click.prevent="onSubmit">
-                    Login
-                  </button>
-          </p>
+        <article class="tile is-child box">
+          <h1 class="title">Hallo!</h1>
+          <h2 class="subtitle">Gleich gehts los</h2>
+      
+          <div class="field is-horizontal">
+             
+              <div class="field-body">
+                <div class="field is-grouped">
+                  <p class="control is-expanded has-icons-left">
+                     <input class="input" type="email" name="email" placeholder="E-Mail">
+                    <span class="icon is-small is-left">
+                      <i class="fa fa-envelope"></i>
+                    </span>
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control is-expanded has-icons-left">
+                    <input class="input" type="password" name="password" placeholder="Password">
+                    <span class="icon is-small is-left">
+                      <i class="fa fa-lock"></i>
+                    </span>
+                  </p> 
+                </div>
+                 <div class="field">
+                      <p class="control">
+                      <button class="button is-success" v-on:click.prevent="onSubmit">
+                              Login
+                            </button>
+                    </p>
+                  </div>
+               </div>
+            </div> 
+        </article>
+    </div>
+    
+  <div class="hero-foot">
+        <div class="container">
+          <div class="tabs is-centered">
+            <ul>
+              <li><a>schon dabei?<router-link :to="{ path: 'login' }"><strong>hier einloggen</strong></router-link></a></li>
+            </ul>
+          </div>
         </div>
-      </article>
     </div>
   </form>
+  
+     
 </template>
 
 <script>
@@ -94,4 +117,8 @@
     margin-left: auto;
     margin-right: auto;
   }
+  form .icon .fa {
+    line-height: 34px;
+    font-size: large;
+}
 </style>

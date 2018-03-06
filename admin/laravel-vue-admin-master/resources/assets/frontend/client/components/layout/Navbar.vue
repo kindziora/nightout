@@ -16,7 +16,7 @@
         </div>
         <div class="nav-right is-flex">
           
-          <router-link :to="{ path: 'user/news' }"  class="nav-item is-tab">
+          <router-link :to="{ path: 'events' }"  class="nav-item is-tab">
             <i class="fa fa-bell-o"> </i>
           </router-link>
           

@@ -32,6 +32,21 @@ const state = {
       component: lazyLoading('axios', true)
     },*/
     {
+      name: 'Home',
+      path: '/',
+      meta: {
+        icon: 'fa-home',
+        link: 'landingpage/index.vue'
+      },
+      component: lazyLoading('landingpage', true)
+    },
+    events,
+    locations,
+    promotions,
+    uifeatures,
+    components,
+    tables,
+     {
       name: 'About',
       path: '/about',
       meta: {
@@ -40,12 +55,6 @@ const state = {
       },
       component: lazyLoading('info', true)
     },
-    events,
-    locations,
-    promotions,
-    uifeatures,
-    components,
-    tables
   ]
 }
 
