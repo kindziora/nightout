@@ -50,7 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $messages = [
-            'required' => 'Das :attribute ist erforderlich.',
+            'required' => 'Dein :attribute ist erforderlich.',
             'min' => 'Mindestens :min Zeichen angeben.',
             'max' => 'Maximal :max Zeichen erlaubt.',
             'unique' => ':attribute schon vergeben.',

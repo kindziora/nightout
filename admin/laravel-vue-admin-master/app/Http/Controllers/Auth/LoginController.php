@@ -39,7 +39,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-      //  $this->middleware('guest', ['except' => 'logout']);
+       $this->middleware('guest', ['except' => 'logout']);
     }
 
 
@@ -51,6 +51,7 @@ class LoginController extends Controller
      */
     public function sendLoginResponse($request)
     {
+         
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);
@@ -89,13 +90,14 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function login(){
+        
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             return response()->json(['success' => $success], $this->successStatus);
         }
         else{
-            return response()->json(['error'=>'Unauthorised'], 401);
+            return response()->json(['error'=>'uh login failed'], 401);
         }
     }
 

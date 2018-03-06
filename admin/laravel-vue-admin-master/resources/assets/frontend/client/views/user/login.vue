@@ -41,7 +41,7 @@
         <div class="container">
           <div class="tabs is-centered">
             <ul>
-              <li><a>schon dabei?<router-link :to="{ path: 'login' }"><strong>hier einloggen</strong></router-link></a></li>
+              <li><a>noch nicht dabei?<router-link :to="{ path: 'register' }"><strong>hier starten</strong></router-link></a></li>
             </ul>
           </div>
         </div>
@@ -104,7 +104,7 @@
         console.log('AjaxForm submission: ERROR', response, data)
         openNotification({
           title: 'Fehler',
-          message: response.email || response.password,
+          message: response.response.data.error || response.password,
           type: "error"
         })
       }
@@ -112,7 +112,7 @@
   }
 </script>
 
-<style>
+<style> 
   .center-by-margin {
     margin-left: auto;
     margin-right: auto;

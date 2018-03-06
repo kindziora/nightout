@@ -21,7 +21,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:api'], function(){
+Route::group(['middleware' => 'api'], function(){
+  
+  
+    //user
+    Route::post('/register', 'Auth\RegisterController@register')->name('register');
+    Route::post('/login', 'Auth\LoginController@login')->name('login');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
   
     //locations
     Route::get('locations/list', 'LocationsController@list');

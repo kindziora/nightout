@@ -57,6 +57,15 @@
               <input id="file" name="image[]" type="file" accept="image/*">
             </div>
           </div>
+          
+           <div class="control">
+            <div class="control-label">
+              <label class="label">Veranstalter?</label>
+            </div>
+            <div class="control">
+              <p> <vb-switch checked type="success"></vb-switch> </p>
+            </div>
+          </div>
   
           <p class="control">
             <button class="button is-success" v-on:click.prevent="onSubmit">starten</button>
@@ -74,8 +83,9 @@
   import FormData from 'form-data'
   import router from '../../router'
   import Vue from 'vue';
-  import Notification from 'vue-bulma-notification'
-  
+  import Notification from 'vue-bulma-notification';
+  import VbSwitch from 'vue-bulma-switch';
+    
   const NotificationComponent = Vue.extend(Notification)
   
   const openNotification = (propsData = {
@@ -98,7 +108,8 @@
       }
     },
     components: {
-      Notification
+      Notification,
+      VbSwitch
     },
     computed: {
       form_method: function() {
@@ -147,5 +158,10 @@
   }
   article.box{
     width: inherit;
+  }
+  
+  .control.has-icon.has-icon-right .icon {
+    right: 18px;
+    top: 17px;
   }
 </style>
