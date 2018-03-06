@@ -8,13 +8,13 @@
               <i class="fa fa-github"></i>
             </span>
           </a>
-          <a href="https://twitter.com/rnightout">
+          <a href="https://twitter.com/pira">
             <span class="icon">
               <i class="fa fa-twitter"></i>
             </span>
           </a>
         </p>
-        <p>by Alexander Kindziora <a :href="'https://github.com/' + repository + '/blob/master/LICENSE'">{{ license }}</a>.</p>
+        <p>pirata by Alexander Kindziora <a :href="'https://github.com/' + repository + '/blob/master/LICENSE'">{{ license }}</a>.</p>
       </div>
     </div>
   </footer>

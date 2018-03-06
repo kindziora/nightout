@@ -8,9 +8,9 @@
 
     <p>
       <strong>{{ description }}</strong>,
-     STarter by Alexander Kindziora
+     by Alexander Kindziora
     </p> 
-    <p>Bulma rocks</p>
+    <p>it rocks</p>
   </div> 
 </template>
 

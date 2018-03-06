@@ -8,9 +8,9 @@
 
     <p>
       <strong>{{ description }}</strong>,
-     STarter
+      
     </p> 
-    <p>Bulma</p> 
+    <p>IT rockz</p> 
   </div> 
 </template>
 

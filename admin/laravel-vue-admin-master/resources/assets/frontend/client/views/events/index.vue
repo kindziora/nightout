@@ -1,18 +1,27 @@
 <template>
-  <div>
-    <select v-model="location" @change="changeFilter()">
-      <option value="story">Story</option>
-      <option value="poll">Poll</option>
-      <option value="show_hn">Show hn</option>
-      <option value="ask_hn">Ask hn</option>
-      <option value="front_page">Front page</option>
-    </select>
+ <div> 
+    
+    <div class="field is-grouped">
+      <div class="field-label">
+        <label class="label">was brauchst du?</label>
+      </div>
+       
+        <div class="select is-fullwidth">
+          <select v-model="location" @change="changeFilter()">
+              <option value="essen" selected>essen</option>
+              <option value="party">party</option>
+              <option value="shopping">shopping</option>
+            </select>
+        </div>
+
+    </div>
+    
     <div class="tile is-ancestor" v-model="this.locations">
       <div class="tile is-parent" v-for="p in locations" :value="p">
         <router-link :to="{ path: 'events/' + p.id }">
           <article class="tile is-child box">
 
-            <p class="title">{{p.title}}<span class="tag smallinfo">in 100m</span></p>   
+            <p class="title">{{p.title}}<span class="tag smallinfo">in {{(1000 % p.id) * 10 }}m</span></p>   
             
             <p class="subtitle">{{p.description}}</p>
             <div class="content has-text-centered">
@@ -55,7 +64,7 @@
           let items = localStorage.getItem(router.fullPath)
           return (items)?JSON.parse(items):[] 
         }(this),
-        location : '',
+        location : 'essen',
         labels: [],
         isloading: false,
         user: JSON.parse(localStorage.getItem('me'))
@@ -126,5 +135,16 @@
     font-size:12px;
     background-color:lightgray;
     float: right;
+  }
+  
+  label{
+    line-height: 32px;
+  }
+  .field-label, .select{
+    flex:1;
+  } 
+  
+  .box {
+    box-shadow: 0 0 0 1px #d1d4d6!important;
   }
 </style>

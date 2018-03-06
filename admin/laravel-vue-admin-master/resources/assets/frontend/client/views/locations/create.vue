@@ -139,15 +139,15 @@
       return {
         selected: null,
         options: ['bar', 'club', 'cafe', 'restaurant', 'kino', 'sonstiges'],
-        zoom: 8,
+        zoom: 9,
         latLng: {
-          lat: 10,
-          lng: 10
+          lat: 52.520008,
+          lng: 13.404954
         },
         description: 'Berlin',
         center: {
-          lat: 10.0,
-          lng: 10.0
+          lat: 52.520008,
+          lng: 13.404954
         },
         markers: [{
   

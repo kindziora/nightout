@@ -39,6 +39,6 @@ export default {
 }
 
 .app-content {
-  padding: 20px;
+  padding: 8px!important;
 }
 </style>
