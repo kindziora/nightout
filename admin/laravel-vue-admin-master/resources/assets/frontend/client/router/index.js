@@ -14,6 +14,11 @@ export default new Router({
       component: require('../views/landingpage')
     },
     {
+      name: 'Explore',
+      path: '/explore',
+      component: require('../views/explore')
+    },
+    {
       name: 'login',
       path: '/login',
       component: require('../views/user/login')

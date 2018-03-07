@@ -1,3 +1,19 @@
+<i18n>
+{
+  "de": {
+    "slogan": "Gutscheine für die coolsten locations in deiner Nähe.",
+    "go" : "Los gehts!",
+    "exist" : "schon dabei?",
+    "login": "hier einloggen"
+  },
+  "es": {
+    "slogan": "Vouchers para los mejores lugares en tu área.",
+    "go" : "¡vamos!",
+    "exist" : "tienes cuenta?",
+    "login": "Iniciar sesión"
+  }
+}
+</i18n>
 <template>
   <form action="/register" method="POST">
     <div class="tile is-parent is-6 center-by-margin">
@@ -85,7 +101,9 @@
   import Vue from 'vue';
   import Notification from 'vue-bulma-notification';
   import VbSwitch from 'vue-bulma-switch';
-    
+  import VueI18n from 'vue-i18n';
+
+  Vue.use(VueI18n);
   const NotificationComponent = Vue.extend(Notification)
   
   const openNotification = (propsData = {
@@ -102,6 +120,9 @@
   }
 
   export default {
+    beforeMount() { 
+      this.$i18n.locale = localStorage.getItem('language') || "de";
+    },
     data() {
       return {
         error: {},

@@ -6,17 +6,26 @@
         <div class="nav-left">
           <a class="nav-item is-hidden-tablet" @click="toggleSidebar(!sidebar.opened)">
             <i class="fa fa-bars" aria-hidden="true"></i>
-          </a>
-           <a class="nav-item is-tab" href="/user/news">
-            <i class="fa fa-star"></i>
-          </a>
-        </div>
-        <div class="nav-center">
-     
-        </div>
-        <div class="nav-right is-flex">
+          </a> 
           
           <router-link :to="{ path: 'events' }"  class="nav-item is-tab">
+             <i class="fa fa-star"></i>
+          </router-link>
+          
+           <router-link :to="{ path: 'explore' }"  class="is-hidden-tablet nav-item is-tab">
+             <i class="fa fa-binoculars"></i>
+           </router-link>
+          
+          
+        </div>
+        
+        <div class="nav-center">
+          
+        </div>
+        
+        <div class="nav-right is-flex">
+           
+         <router-link :to="{ path: 'events' }"  class="nav-item is-tab">
             <i class="fa fa-bell-o"> </i>
           </router-link>
           

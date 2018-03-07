@@ -37,8 +37,8 @@ export default {
   }
 
 }
-
-.app-content {
-  padding: 8px!important;
-}
+  .pad08 {
+      padding: 0 8px;
+  }
+  
 </style>

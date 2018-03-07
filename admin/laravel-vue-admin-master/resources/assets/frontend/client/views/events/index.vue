@@ -1,5 +1,5 @@
 <template>
- <div> 
+ <div class="pad08"> 
     
     <div class="field is-grouped">
       <div class="field-label">
@@ -130,6 +130,7 @@
   }
 </script>
 
+
 <style scoped>
   .smallinfo{
     font-size:12px;
@@ -147,4 +148,5 @@
   .box {
     box-shadow: 0 0 0 1px #d1d4d6!important;
   }
+   
 </style>
