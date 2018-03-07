@@ -78,8 +78,8 @@
             <div class="control-label">
               <label class="label">Veranstalter?</label>
             </div>
-            <div class="control">
-              <p> <vb-switch checked type="success"></vb-switch> </p>
+            <div class="control"> 
+              <vb-switch type="success" :checked="organizer" v-model="organizer"></vb-switch>
             </div>
           </div>
   
@@ -126,6 +126,7 @@
     data() {
       return {
         error: {},
+        organizer : false
       }
     },
     components: {

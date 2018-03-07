@@ -23,7 +23,7 @@
         <div class="columns is-vcentered">
           <div class="column is-5">
             <div class="buttons has-addons">
-              <span class="button"> {{ $t('what') }}</span>
+              <span class="button" @click="openWhatModal()"> {{ $t('what') }}</span>
               <span class="button">{{ $t('when') }}</span>
               <span class="button">{{ $t('filter') }}</span>
             </div>
@@ -58,6 +58,20 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 import router from 'vue-router';
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
+
+import whatModal from './modals/what'
+
+const whatModalComponent = Vue.extend(whatModal);
+
+const createWhatModal = (propsData = {
+  visible: true
+}) => {
+  return new whatModalComponent({
+    el: document.createElement('div'),
+    propsData
+  })
+} 
+
 Vue.use(VueI18n);
 
 Vue.use(VueGoogleMaps, {
@@ -70,6 +84,16 @@ Vue.use(VueGoogleMaps, {
 export default {
    components: {
       router
+    },
+    methods: { 
+       openWhatModal () {
+        const whatModal = this.whatModal || (this.whatModal = createWhatModal({
+          title: 'wählerisch?',
+          categories: [{name:"party"}, {name:"essen"}, {name:"shopping"}, {name:"services"}],
+          checkedCategories : []
+        }));
+        whatModal.$children[0].active();
+      }
     },
   data () {
     return {
