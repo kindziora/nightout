@@ -22,10 +22,18 @@
       <div class="container has-text-centered">
         <div class="columns is-vcentered">
           <div class="column is-5">
-            <div class="buttons has-addons">
-              <span class="button" @click="openWhatModal()"> {{ $t('what') }}</span>
-              <span class="button">{{ $t('when') }}</span>
-              <span class="button">{{ $t('filter') }}</span>
+           
+            <div class="columns is-gapless is-mobile" id="filter">
+              <div class="column filter" @click="openWhatModal()">
+                 {{ $t('what') }}
+              </div>
+              <div class="column filter">
+                <p class=""><vb-switch type="success" :value="today" v-model="today"></vb-switch> {{$t('Heute')}}</p>
+                <datepicker placeholder="Datum wählen" :config="{ mode: 'range' }"></datepicker>
+              </div>
+              <div class="column filter">
+                 {{ $t('filter') }}
+              </div>
             </div>
             
             <figure class="is-4by3">
@@ -42,7 +50,7 @@
       <div class="container">
         <div class="tabs is-centered">
           <ul class="xx-small">
-            <li><a>{{ $t('missing') }}<router-link :to="{ path: 'event/create' }" class="is-link"><strong>{{ $t('create') }}</strong></router-link></a></li>
+            <li><a>{{ $t('missing') }}<router-link :to="{ path: 'events/create' }" class="is-link"><strong>{{ $t('create') }}</strong></router-link></a></li>
           </ul>
         </div>
       </div>
@@ -58,11 +66,13 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 import router from 'vue-router';
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
+import VbSwitch from 'vue-bulma-switch';
+import Datepicker from 'vue-bulma-datepicker';
+Vue.use(VueI18n);
 
-import whatModal from './modals/what'
-
+////////////////////////////////WHAT MODAL//////////////////////////////////////
+import whatModal from './modals/what';
 const whatModalComponent = Vue.extend(whatModal);
-
 const createWhatModal = (propsData = {
   visible: true
 }) => {
@@ -70,9 +80,18 @@ const createWhatModal = (propsData = {
     el: document.createElement('div'),
     propsData
   })
-} 
-
-Vue.use(VueI18n);
+};
+////////////////////////////////WHEN MODAL//////////////////////////////////////
+import whenModal from './modals/filter';
+const whenModalComponent = Vue.extend(whenModal);
+const createWhenModal = (propsData = {
+  visible: true
+}) => {
+  return new whenModalComponent({
+    el: document.createElement('div'),
+    propsData
+  })
+};
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -83,14 +102,22 @@ Vue.use(VueGoogleMaps, {
 
 export default {
    components: {
-      router
+      router,
+      VbSwitch,
+      Datepicker
     },
     methods: { 
+      openWhenModal () {
+        const whenModal = this.whenModal || (this.whenModal = createWhenModal({
+          title: this.$i18n.t('Wann?'),
+          categories: this.categories
+        }));
+        whenModal.$children[0].active();
+      },
        openWhatModal () {
         const whatModal = this.whatModal || (this.whatModal = createWhatModal({
-          title: 'wählerisch?',
-          categories: [{name:"party"}, {name:"essen"}, {name:"shopping"}, {name:"services"}],
-          checkedCategories : []
+          title: this.$i18n.t('Was ist dein Ding?'),
+          categories: this.categories
         }));
         whatModal.$children[0].active();
       }
@@ -98,7 +125,7 @@ export default {
   data () {
     return {
         selected: null,
-        options: ['bar', 'club', 'cafe', 'restaurant', 'kino', 'sonstiges'],
+        categories: [{name:"party", active : true}, {name:"essen", active : false}, {name:"shopping", active : false}, {name:"services", active : true}],
         zoom: 9,
         latLng: {
           lat: 52.520008,
@@ -151,21 +178,40 @@ export default {
     padding: 0;
     margin-top:-5px;
 }
+
 .xx-small {
   font-size: xx-small;
 }
-.buttons.has-addons{
-   margin:0;
+ 
+.filter{
+   flex:1;
+   border: 1px solid #f4f5f5;
 }
-.buttons.has-addons .button{
-  flex:1;
-  border-color: #e1ece9;
-  margin:0;
-}
-
 .column{
-  padding-top: 0;
+  padding: 0;
   margin-top: -21px;
 }
 
+.flatpickr-input{
+  display:none;
+}
+
+#filter{
+  margin-bottom:0;
+}
+.columns{
+  margin:0;
+}
+
+</style>
+
+<style>
+  .check-with-text{
+    font-size: x-large;
+  }
+  
+  label.switch{
+    vertical-align: middle;
+  }    
+ 
 </style>

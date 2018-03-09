@@ -19,14 +19,14 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <div class="columns is-vcentered">
-          <div class="column is-5">
+          <div class="a column is-5">
             <figure class="is-4by3">
-               <gmap-map :center="{lat:latLng.lat , lng:latLng.lng}" :zoom="zoom" style="width: 100%; height: 300px">
+               <gmap-map :center="{lat:latLng.lat , lng:latLng.lng}" :options="mapOptions" :zoom="zoom" style="width: 100%; height: 345px">
                 <gmap-marker v-for="m in markers" :key="m.position" :position="{lat:latLng.lat , lng:latLng.lng}" :clickable="true" @click="center=m.position"></gmap-marker>
               </gmap-map>
             </figure>
           </div>
-          <div class="column is-6 is-offset-1">
+          <div class="b column is-6 is-offset-1">
             <h1 class="title is-2">
               Pirata
             </h1>
@@ -58,14 +58,14 @@
 </template>
 
 <script>
-
-
-import * as VueGoogleMaps from 'vue2-google-maps';
-import router from 'vue-router';
-import Vue from 'vue';
-import VueI18n from 'vue-i18n';
-Vue.use(VueI18n);
-
+  
+  
+  import * as VueGoogleMaps from 'vue2-google-maps';
+  import router from 'vue-router';
+  import Vue from 'vue';
+  import VueI18n from 'vue-i18n';
+  Vue.use(VueI18n);
+  
   Vue.use(VueGoogleMaps, {
     load: {
       libraries: 'places',
@@ -73,54 +73,75 @@ Vue.use(VueI18n);
     }
   });
   
-
-
-export default {
-   components: {
-      router
+  export default {
+     components: {
+        router
+      },
+    data () {
+      return {
+          selected: null,
+          options: ['bar', 'club', 'cafe', 'restaurant', 'kino', 'sonstiges'],
+          zoom: 9,
+          latLng: {
+            lat: 52.520008,
+            lng: 13.404954
+          },
+          description: 'Berlin',
+          center: {
+            lat: 52.520008,
+            lng: 13.404954
+          },
+          markers: [{
+            
+          }],   
+          mapOptions: {
+            disableDefaultUI: true,
+             styles :  [
+              {
+                "featureType": "poi",
+                "elementType": "labels",
+                "stylers": [
+                  { "visibility": "off" }
+                ]
+              }
+            ]
+            
+          }
+        }
     },
-  data () {
-    return {
-        selected: null,
-        options: ['bar', 'club', 'cafe', 'restaurant', 'kino', 'sonstiges'],
-        zoom: 9,
-        latLng: {
-          lat: 52.520008,
-          lng: 13.404954
-        },
-        description: 'Berlin',
-        center: {
-          lat: 52.520008,
-          lng: 13.404954
-        },
-        markers: [{
-          
-        }]
+    beforeMount() {
+        var me = this;
+        navigator.geolocation.getCurrentPosition((pos) => {
+          me.latLng.lat = pos.coords.latitude;
+          me.latLng.lng = pos.coords.longitude;
+        });
+        this.$i18n.locale = localStorage.getItem('language') || "de";
+      },
+      mounted() {
+        let me = this;
+        window.setTimeout(()=>me.zoom = 11, 2000);
       }
-  },
-  beforeMount() {
-      var me = this;
-      navigator.geolocation.getCurrentPosition((pos) => {
-        me.latLng.lat = pos.coords.latitude;
-        me.latLng.lng = pos.coords.longitude;
-      });
-      this.$i18n.locale = localStorage.getItem('language') || "de";
-    },
-    mounted() {
-      let me = this;
-      window.setTimeout(()=>me.zoom = 11, 2000);
-    }
-}
+  }
 </script>
 
 <style lang="scss" scoped>
-.is-title {
-  text-transform: capitalize;
-}
-
-.hero-body {
-    padding: 0;
-    margin-top:-5px;
-}
-
+  .is-title {
+    text-transform: capitalize;
+  }
+  
+  .hero-body {
+      padding: 0;
+      margin-top:-5px;
+  }
+  
+  .a.column{
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: -21px;
+    padding-top: 0;
+  }
+  .columns{
+    margin-right:0;
+    margin-left: 0;
+  }
 </style>
