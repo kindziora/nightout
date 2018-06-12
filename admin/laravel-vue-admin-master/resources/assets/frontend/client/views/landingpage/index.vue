@@ -1,7 +1,7 @@
 <i18n>
 {
   "de": {
-    "slogan": "Gutscheine für die coolsten locations in deiner Nähe.",
+    "slogan": "Geld sparen bei den coolsten locations in deiner Nähe.",
     "go" : "Los gehts!",
     "exist" : "schon dabei?",
     "login": "hier einloggen"

@@ -28,7 +28,7 @@
                  {{ $t('what') }}
               </div>
               <div class="column filter">
-                <p class=""><vb-switch type="success" :value="today" v-model="today"></vb-switch> {{$t('Heute')}}</p>
+                <p class=""><vb-switch type="success" :value="today" v-model="today" size="small"></vb-switch> {{$t('Heute')}}</p>
                 <datepicker placeholder="Datum wählen" :config="{ mode: 'range' }"></datepicker>
               </div>
               <div class="column filter">
@@ -37,8 +37,25 @@
             </div>
             
             <figure class="is-4by3">
+              <div id ="what">
+                <div class="tile ">
+                  <div class="block styles-box">
+                    <ul>
+                      <li v-for="(category,i) in categories">
+                        <vb-switch :value="categories[i].name" v-model="categories[i].active"></vb-switch> {{category.name}}
+                     </li>
+                  </ul>
+                  </div>
+                </div>
+                <hr/>
+                 <div class="tile ">
+                  <div class="block styles-box check-with-text" >
+                      <vb-switch type="success" :value="isdeal" v-model="isdeal"></vb-switch> nur deals
+                  </div>
+                </div> 
+              </div> 
                <gmap-map :center="{lat:latLng.lat , lng:latLng.lng}" :zoom="zoom" :options="mapOptions" style="width: 100%; height: 500px">
-                <gmap-marker v-for="m in markers" :key="m.position" :position="{lat:latLng.lat , lng:latLng.lng}" :clickable="true" @click="center=m.position"></gmap-marker>
+                <gmap-marker v-for="(m, index ) in markers" :key="index" :position="m.position" :icon="m.icon" :clickable="true" @click="center=m.position"></gmap-marker>
               </gmap-map>
             </figure>
           </div>
@@ -127,6 +144,7 @@ export default {
         selected: null,
         categories: [{name:"party", active : true}, {name:"essen", active : false}, {name:"shopping", active : false}, {name:"services", active : true}],
         zoom: 9,
+        today: true,
         latLng: {
           lat: 52.520008,
           lng: 13.404954
@@ -150,8 +168,20 @@ export default {
           
         },
         markers: [{
-          
-        }]
+            position: {
+              lat: 52.520008,
+              lng: 13.404954
+            },
+            icon:{ url: '../assets/img/party.png'}
+          }, 
+          {
+            position: {
+              lat: 52.420008,
+              lng: 13.504954
+            },
+             icon: { url: '../assets/img/party.png'}
+          }
+        ] 
       }
   },
   beforeMount() {
@@ -183,9 +213,19 @@ export default {
   font-size: xx-small;
 }
  
-.filter{
+label.switch {
+    vertical-align: sub;
+}
+
+#filter .switch.is-small {
+    --height: 15px;
+}
+
+#filter .filter{
    flex:1;
    border: 1px solid #f4f5f5;
+   line-height: 25px;
+   text-transform: uppercase;
 }
 .column{
   padding: 0;
@@ -201,6 +241,16 @@ export default {
 }
 .columns{
   margin:0;
+}
+
+#what{
+    float: left;
+    position: absolute;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.64);
+    text-align: left;
+    padding: 0.9rem;
+    font-size: 1rem;
 }
 
 </style>
